@@ -1,0 +1,15 @@
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/timers.c
+electronic oscilloscope\timers.o: E:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+electronic oscilloscope\timers.o: E:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+electronic oscilloscope\timers.o: E:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+electronic oscilloscope\timers.o: ../Core/Inc/FreeRTOSConfig.h
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
+electronic oscilloscope\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h

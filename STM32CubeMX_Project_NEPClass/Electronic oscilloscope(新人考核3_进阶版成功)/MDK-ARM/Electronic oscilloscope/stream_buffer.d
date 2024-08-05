@@ -1,0 +1,14 @@
+electronic oscilloscope\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c
+electronic oscilloscope\stream_buffer.o: E:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+electronic oscilloscope\stream_buffer.o: E:\keil\ARM\ARMCC\Bin\..\include\string.h
+electronic oscilloscope\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+electronic oscilloscope\stream_buffer.o: E:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+electronic oscilloscope\stream_buffer.o: ../Core/Inc/FreeRTOSConfig.h
+electronic oscilloscope\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+electronic oscilloscope\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+electronic oscilloscope\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+electronic oscilloscope\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+electronic oscilloscope\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+electronic oscilloscope\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+electronic oscilloscope\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+electronic oscilloscope\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stream_buffer.h

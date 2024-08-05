@@ -1,0 +1,78 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¶ÃVision V5.24.2.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 11 …Ò”•, 1, LIC=NQQMA-1M8MF-63ZMB-2AE6J-FH8EV-L781J
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.24.1
+Toolchain Path:  E:\keil\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.7
+Assembler:       Armasm.exe V6.7
+Linker/Locator:  ArmLink.exe V6.7
+Library Manager: ArmAr.exe V6.7
+Hex Converter:   FromElf.exe V6.7
+CPU DLL:         SARMCM3.DLL V5.24.1
+Dialog DLL:      DCM.DLL V1.16.0.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
+Dialog DLL:      TCM.DLL V1.32.0.0
+ 
+<h2>Project:</h2>
+E:\Code\Work\New engineering pilot class\STM32CubeMX_Project\”√”⁄≤‚ ‘\Control_Motor\MDK-ARM\Control_Motor.uvprojx
+Project File Date:  08/03/2024
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.7', folder: 'E:\keil\ARM\ARMCLANG\Bin'
+Build target 'Control_Motor'
+compiling croutine.c...
+compiling list.c...
+compiling event_groups.c...
+compiling freertos.c...
+compiling main.c...
+compiling stream_buffer.c...
+compiling queue.c...
+compiling tasks.c...
+compiling timers.c...
+compiling heap_4.c...
+compiling port.c...
+../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c(132): warning: implicit declaration of function '__get_IPSR' is invalid in C99 [-Wimplicit-function-declaration]
+  return __get_IPSR() != 0;
+         ^
+1 warning generated.
+compiling cmsis_os.c...
+linking...
+Control_Motor\Control_Motor.axf: Error: L6218E: Undefined symbol __get_IPSR (referred from cmsis_os.o).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+"Control_Motor\Control_Motor.axf" - 1 Error(s), 1 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.0.1.pack
+                ARM.CMSIS.5.0.1
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.0.1
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
+                Keil.STM32F4xx_DFP.2.17.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Control_Motor
+  E:\keil\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include
+  E:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.0.1
+Target not created.
+Build Time Elapsed:  00:00:06
+</pre>
+</body>
+</html>

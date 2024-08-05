@@ -1,0 +1,27 @@
+--cpu=Cortex-M4.fp
+"4_pwm_led\startup_stm32f407xx.o"
+"4_pwm_led\main.o"
+"4_pwm_led\gpio.o"
+"4_pwm_led\tim.o"
+"4_pwm_led\stm32f4xx_it.o"
+"4_pwm_led\stm32f4xx_hal_msp.o"
+"4_pwm_led\stm32f4xx_hal_tim.o"
+"4_pwm_led\stm32f4xx_hal_tim_ex.o"
+"4_pwm_led\stm32f4xx_hal_rcc.o"
+"4_pwm_led\stm32f4xx_hal_rcc_ex.o"
+"4_pwm_led\stm32f4xx_hal_flash.o"
+"4_pwm_led\stm32f4xx_hal_flash_ex.o"
+"4_pwm_led\stm32f4xx_hal_flash_ramfunc.o"
+"4_pwm_led\stm32f4xx_hal_gpio.o"
+"4_pwm_led\stm32f4xx_hal_dma_ex.o"
+"4_pwm_led\stm32f4xx_hal_dma.o"
+"4_pwm_led\stm32f4xx_hal_pwr.o"
+"4_pwm_led\stm32f4xx_hal_pwr_ex.o"
+"4_pwm_led\stm32f4xx_hal_cortex.o"
+"4_pwm_led\stm32f4xx_hal.o"
+"4_pwm_led\stm32f4xx_hal_exti.o"
+"4_pwm_led\system_stm32f4xx.o"
+--strict --scatter "4_PWM_LED\4_PWM_LED.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "4_PWM_LED.map" -o 4_PWM_LED\4_PWM_LED.axf

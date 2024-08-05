@@ -1,0 +1,28 @@
+--cpu=Cortex-M4.fp
+"5_buzzeer\startup_stm32f407xx.o"
+"5_buzzeer\main.o"
+"5_buzzeer\gpio.o"
+"5_buzzeer\tim.o"
+"5_buzzeer\stm32f4xx_it.o"
+"5_buzzeer\stm32f4xx_hal_msp.o"
+"5_buzzeer\buzzer_on.o"
+"5_buzzeer\stm32f4xx_hal_tim.o"
+"5_buzzeer\stm32f4xx_hal_tim_ex.o"
+"5_buzzeer\stm32f4xx_hal_rcc.o"
+"5_buzzeer\stm32f4xx_hal_rcc_ex.o"
+"5_buzzeer\stm32f4xx_hal_flash.o"
+"5_buzzeer\stm32f4xx_hal_flash_ex.o"
+"5_buzzeer\stm32f4xx_hal_flash_ramfunc.o"
+"5_buzzeer\stm32f4xx_hal_gpio.o"
+"5_buzzeer\stm32f4xx_hal_dma_ex.o"
+"5_buzzeer\stm32f4xx_hal_dma.o"
+"5_buzzeer\stm32f4xx_hal_pwr.o"
+"5_buzzeer\stm32f4xx_hal_pwr_ex.o"
+"5_buzzeer\stm32f4xx_hal_cortex.o"
+"5_buzzeer\stm32f4xx_hal.o"
+"5_buzzeer\stm32f4xx_hal_exti.o"
+"5_buzzeer\system_stm32f4xx.o"
+--strict --scatter "5_Buzzeer\5_Buzzeer.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "5_Buzzeer.map" -o 5_Buzzeer\5_Buzzeer.axf

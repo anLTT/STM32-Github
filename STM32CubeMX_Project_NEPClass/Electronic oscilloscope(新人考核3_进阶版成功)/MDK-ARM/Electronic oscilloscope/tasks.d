@@ -1,0 +1,16 @@
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/tasks.c
+electronic oscilloscope\tasks.o: E:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+electronic oscilloscope\tasks.o: E:\keil\ARM\ARMCC\Bin\..\include\string.h
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+electronic oscilloscope\tasks.o: E:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+electronic oscilloscope\tasks.o: E:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+electronic oscilloscope\tasks.o: ../Core/Inc/FreeRTOSConfig.h
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+electronic oscilloscope\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h

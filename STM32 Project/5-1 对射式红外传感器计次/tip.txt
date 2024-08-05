@@ -1,0 +1,44 @@
+原先函数是
+void EXTI15_10_IRQHandler(void)//中断函数名称不能写错,否则进不了中断!!!!
+{
+	//一般先进行中断标志位的判断,确保是想要的中断源触发的函数(因为这函数EXTI10到15都能进来)
+	 if(EXTI_GetITStatus(EXTI_Line14) == SET)//看EXTI14的中断标志位是不是1,因为返回值是SET或RESET,所以if
+	 {//若是,执行中断程序		 
+	//中断程序结束后一定要清除中断函数标志位
+	//因为只要中断标志位置1,程序就会跳到中断函数.不清除就会一直中断
+		CountSensor_Count ++;
+		EXTI_ClearITPendingBit(EXTI_Line14);}//将中断标志位清除
+	//接着测试能不能进入中断函数
+	//中断函数不用声明,因为不需要调用,到时候自动执行
+}
+
+但由于实际测的时候数据会乱跳,所以改为新的
+
+
+
+
+
+
+
+
+
+void EXTI15_10_IRQHandler(void)//中断函数名称不能写错,否则进不了中断!!!!
+{
+	//一般先进行中断标志位的判断,确保是想要的中断源触发的函数(因为这函数EXTI10到15都能进来)
+	 if(EXTI_GetITStatus(EXTI_Line14) == SET)//看EXTI14的中断标志位是不是1,因为返回值是SET或RESET,所以if
+	 {//若是,执行中断程序
+		 
+	//中断程序结束后一定要清除中断函数标志位
+	//因为只要中断标志位置1,程序就会跳到中断函数.不清除就会一直中断
+
+		 //如果此处数据乱跳可以对GPIO14口进行再次判断：	
+		 if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_14) == 0)
+		 {CountSensor_Count ++;
+		 
+		 
+		EXTI_ClearITPendingBit(EXTI_Line14);}//将中断标志位清除
+	//接着测试能不能进入中断函数
+	//中断函数不用声明,因为不需要调用,到时候自动执行
+	 }
+
+}

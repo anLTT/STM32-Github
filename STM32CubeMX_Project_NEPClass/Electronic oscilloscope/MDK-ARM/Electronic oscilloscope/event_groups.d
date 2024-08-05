@@ -1,0 +1,15 @@
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
+electronic oscilloscope\event_groups.o: E:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+electronic oscilloscope\event_groups.o: E:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+electronic oscilloscope\event_groups.o: E:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+electronic oscilloscope\event_groups.o: ../Core/Inc/FreeRTOSConfig.h
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+electronic oscilloscope\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h

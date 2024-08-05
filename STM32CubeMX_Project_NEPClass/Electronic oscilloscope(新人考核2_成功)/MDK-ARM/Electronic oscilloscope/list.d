@@ -1,0 +1,12 @@
+electronic oscilloscope\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/list.c
+electronic oscilloscope\list.o: E:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
+electronic oscilloscope\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+electronic oscilloscope\list.o: E:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+electronic oscilloscope\list.o: E:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+electronic oscilloscope\list.o: ../Core/Inc/FreeRTOSConfig.h
+electronic oscilloscope\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+electronic oscilloscope\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+electronic oscilloscope\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+electronic oscilloscope\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+electronic oscilloscope\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+electronic oscilloscope\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

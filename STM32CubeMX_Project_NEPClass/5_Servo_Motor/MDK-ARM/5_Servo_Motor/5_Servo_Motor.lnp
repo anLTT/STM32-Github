@@ -1,0 +1,27 @@
+--cpu=Cortex-M4.fp
+"5_servo_motor\startup_stm32f407xx.o"
+"5_servo_motor\main.o"
+"5_servo_motor\gpio.o"
+"5_servo_motor\tim.o"
+"5_servo_motor\stm32f4xx_it.o"
+"5_servo_motor\stm32f4xx_hal_msp.o"
+"5_servo_motor\stm32f4xx_hal_tim.o"
+"5_servo_motor\stm32f4xx_hal_tim_ex.o"
+"5_servo_motor\stm32f4xx_hal_rcc.o"
+"5_servo_motor\stm32f4xx_hal_rcc_ex.o"
+"5_servo_motor\stm32f4xx_hal_flash.o"
+"5_servo_motor\stm32f4xx_hal_flash_ex.o"
+"5_servo_motor\stm32f4xx_hal_flash_ramfunc.o"
+"5_servo_motor\stm32f4xx_hal_gpio.o"
+"5_servo_motor\stm32f4xx_hal_dma_ex.o"
+"5_servo_motor\stm32f4xx_hal_dma.o"
+"5_servo_motor\stm32f4xx_hal_pwr.o"
+"5_servo_motor\stm32f4xx_hal_pwr_ex.o"
+"5_servo_motor\stm32f4xx_hal_cortex.o"
+"5_servo_motor\stm32f4xx_hal.o"
+"5_servo_motor\stm32f4xx_hal_exti.o"
+"5_servo_motor\system_stm32f4xx.o"
+--strict --scatter "5_Servo_Motor\5_Servo_Motor.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "5_Servo_Motor.map" -o 5_Servo_Motor\5_Servo_Motor.axf
