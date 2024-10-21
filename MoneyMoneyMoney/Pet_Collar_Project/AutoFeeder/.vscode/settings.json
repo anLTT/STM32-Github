@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "main.h": "c",
+        "my_typedef.h": "c",
+        "stdint.h": "c"
+    }
+}
