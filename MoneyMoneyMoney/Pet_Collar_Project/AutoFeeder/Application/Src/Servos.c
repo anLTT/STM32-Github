@@ -13,7 +13,7 @@ extern TIM_HandleTypeDef htim1;
 void Servo_Open(uint16_t angle)
 {
     //计算占空比
-    uint16_t compare = (angle * 10 + 500) / 180 + 50;
+    uint16_t compare = angle / 9.0 + 5;
     //设置占空比
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, compare);
 }
@@ -22,7 +22,7 @@ void Servo_Open(uint16_t angle)
 void Servo_Close(void)
 {
     //设置占空比
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 50);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 5);
 }
 
 //定时自动开关舵机
