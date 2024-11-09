@@ -1,0 +1,43 @@
+{
+  "AT_APP_SHOW": {
+
+    "PANEL": [ "AT_COM_PANEL", "AT_WIFI_PANEL" ],
+    "AT_COM_PANEL": {
+      "AT_HELP": "yes",
+      "AT_DEBUG": "yes",
+      "AT_IO_CONTROL": "no",
+      "AT_WEB_INFO": "yes"
+    },
+
+    "AT_WIFI_PANEL": {
+      "AT_WIFI_SETTING": "yes",
+      "AT_NET_COM": "yes",
+      "AT_MQTT": "yes",
+      "AT_HTTP": "yes",
+      "AT_SNTP": "yes",
+      "AT_PING": "yes",
+      "AT_DNS": "yes"
+    }
+  },
+
+	"AT_HELP": {
+		"doc_path": "https://aithinker-combo-guide.readthedocs.io/en/latest/index.html",
+		"English_doc_path": "https://aithinker-combo-guide-en.readthedocs.io/en/latest/index.html"
+		//"doc_path": "module\\wifi_series\\ESP8266\\esp8266.xlsx"
+	},
+
+	"AT_WEB_INFO": {
+		"url": "https://docs.ai-thinker.com/esp8266",
+		"English_url": "https://docs.ai-thinker.com/en/wifi"
+	},
+  
+  //AT 淘宝  模组网站
+  "AT_TAO_BAO_INFO": {
+    "url": "https://anxinke.taobao.com"
+  },
+
+  "AT_DEBUG": {
+    "src_path": "module\\wifi_series\\ESP8266\\ESP8266_AT_Instruction_Set_CN_v0.30.pdf"
+  }
+
+}

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Softinfo Language="Chinese" author="Johhn" Time="2023.1.10">
+	<Form>
+		<Name>FrmMain</Name>
+		<Controls>
+		<!--
+		
+			
+		 -->
+			<Control name="labelTitle" text="安信可模组万能调试助手"/>
+			<Control name="BtTool" text="开发工具"/>						
+			<Control name="BtApplicationMarket" text="应用市场"/>	
+			<Control name="BtAbout" text="关于软件"/>
+			<Control name="BtAtApp" text="AT应用"/>
+			
+			
+			
+			<Control name="labelModule" text="模组型号："/>
+			<Control name="labelPort" text="串口号："/>			
+			<Control name="labelBautrate" text="波特率："/>			
+			<Control name="labelState" text="状态："/>	
+			
+			<Control name="labelPortChosse" text="串口号："/>
+			<Control name="labelCheck" text="校验位："/>		
+			<Control name="label10" text="停止位："/>	
+			
+			<Control name="label7" text="波特率："/>
+			<Control name="label9" text="数据位："/>
+			
+			<Control name="buttonShowLog" text="日志"/>	
+			
+			<Control name="BT_SwitchPort" text="打开串口" CloseText="关闭串口"/>									
+			<Control name="BT_SwitchPortHead" text="打开串口" CloseText="关闭串口"/>
+		
+		</Controls>
+	</Form>
+	<Form>
+		<Name>ChildForm_Home</Name>
+		<Controls>
+		<!--
+		<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			performance,
+		 -->	
+			<Control name="buttonSelect" text="选择产品"/>	
+			<Control name="buttonWeb" text="官网"/>	
+			
+			<Control name="label1" text="Ai-Thinker"/>
+			<Control name="label19" text="Based on Ai-Thinker Internet of Things platform service open products,diverse forms of cooperation,more integrated services,high cost performance"/>			
+			<Control name="label2" text="Core team with 5 years of industry experience,mature software, core supply chain resources,3000+ customer service experience."/>	
+			<Control name="label3" text="Full range of wireless modules"/>
+			<Control name="label4" text="Cost-effective intelligent networking module,built-in MCU,friendly secondary development interface;The Internet of Things cloud with high "/>	
+			<Control name="label20" text="performance,high reliability and high scalability can quickly intervene in the third-party intelligent cloud platform;can directly use the standard APP,development 0 investment"/>
+			<Control name="label8" text="Rapid response, sample verification"/>
+			<Control name="label11" text="Multiple standardized product lines facilitate fast proofing,verification and delivery;Passed the ISO9001 international quality system certification,so that the timeliness and quality to achieve unprecedented balance."/>
+			<Control name="label13" text="Technical Services"/>
+			
+			<Control name="label16" text="DOCS database, forums,emails and other platforms to provide technical services,complete API interface,and various SDK packages, greatly shorten the integration time,facilitate mass production and quickly landing of product."/>
+			
+		</Controls>
+	</Form>
+	<Form>
+		<Name>at_form_atDebug</Name>
+		<Controls>
+			<Control name="DebugButtonSend" text="发送"/>	
+			<Control name="buttonSaveShowLog" text="保存"/>	
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>ChildForm_AtApp</Name>
+		<Controls>
+		
+			<Control name="WifiTxtWifiMode" text="当前模式："/>			
+			<Control name="TxtApName" text="热点名称："/>
+			<Control name="TxtWifiName" text="连接的WIFI名称："/>
+
+
+			<Control name="TxtBtMode" text="当前模式："/>			
+			<Control name="TxtBtMac" text="连接的Mac："/>	
+			
+			
+
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>ComForm_UartLog</Name>
+		<Controls>						
+			<Control name="ComForm_UartLog" text="日志窗口"/>
+			<Control name="BtnSend" text="发送"/>
+		</Controls>
+	</Form>
+	<Form>
+		<Name>uc_UartLog</Name>
+		<Controls>
+			
+			
+			<Control name="TspClr" ToolTipText="清除日志"/>
+			<Control name="Ms_ToolStripMenuItem" text="ms/次"/>
+			
+
+		</Controls>
+	</Form>
+	
+		<Form>
+		<Name>at_form_mqtt_ComboAt</Name>
+		<Controls>
+			<Control name="BtnConnect" text="连接" DisconnectText="断开"/>
+
+			
+			
+			
+
+		</Controls>
+	</Form>
+	
+	
+</Softinfo>
+

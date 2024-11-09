@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Softinfo Language="English" author="Johhn" Time="2023.1.10">
+	<Form>
+		<Name>FrmMain</Name>
+		<Controls>
+		<!--
+		
+			
+		 -->
+			<Control name="labelTitle" text="Ai-Thinker module universal debugging assistant"/>
+			<Control name="BtTool" text="Developer Kits"/>						
+			<Control name="BtApplicationMarket" text="Application Market"/>	
+			<Control name="BtAbout" text="About SW"/>
+			<Control name="BtAtApp" text="AT application"/>
+			
+			
+			
+			<Control name="labelModule" text="model:"/>			
+			<Control name="labelBautrate" text="baud rate"/>			
+			<Control name="labelState" text="state:"/>	
+			
+			<Control name="labelPortChosse" text="serial number"/>
+			<Control name="labelCheck" text="parity bit"/>		
+			<Control name="label10" text="stop bit"/>	
+			
+			<Control name="label7" text="baud rate"/>
+			<Control name="label9" text="data bit"/>
+			
+			<Control name="buttonShowLog" text="log"/>	
+			
+			<Control name="BT_SwitchPort" text="OpenSerialPort"/>									
+			<Control name="BT_SwitchPortHead" text="OpenSerialPort"/>
+		
+		</Controls>
+	</Form>
+	<Form>
+		<Name>ChildForm_Home</Name>
+		<Controls>
+		<!--
+		<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			performance,
+		 -->	
+			<Control name="buttonSelect" text="select product"/>	
+			<Control name="buttonWeb" text="offical website"/>	
+			
+			<Control name="label1" text="Ai-Thinker"/>
+			<Control name="label19" text="Based on Ai-Thinker Internet of Things platform service open products,diverse forms of cooperation,more integrated services,high cost performance"/>			
+			<Control name="label2" text="Core team with 5 years of industry experience,mature software, core supply chain resources,3000+ customer service experience."/>	
+			<Control name="label3" text="Full range of wireless modules"/>
+			<Control name="label4" text="Cost-effective intelligent networking module,built-in MCU,friendly secondary development interface;The Internet of Things cloud with high "/>	
+			<Control name="label20" text="performance,high reliability and high scalability can quickly intervene in the third-party intelligent cloud platform;can directly use the standard APP,development 0 investment"/>
+			<Control name="label8" text="Rapid response, sample verification"/>
+			<Control name="label11" text="Multiple standardized product lines facilitate fast proofing,verification and delivery;Passed the ISO9001 international quality system certification,so that the timeliness and quality to achieve unprecedented balance."/>
+			<Control name="label13" text="Technical Services"/>
+			
+			<Control name="label16" text="DOCS database, forums,emails and other platforms to provide technical services,complete API interface,and various SDK packages, greatly shorten the integration time,facilitate mass production and quickly landing of product."/>
+			
+		</Controls>
+	</Form>
+	<Form>
+		<Name>at_form_atDebug</Name>
+		<Controls>
+			<Control name="buttonSend" text="sned"/>	
+			<Control name="buttonSaveShowLog" text="save"/>	
+		</Controls>
+	</Form>
+	
+	
+</Softinfo>
+

@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Softinfo Language="English" author="Johhn" Time="2023.1.10">
+	<Form>
+		<Name>FrmMain</Name>
+		<Controls>
+		<!--
+		
+			
+		 -->
+			<Control name="labelTitle" text="Ai-Thinker Module Universal Debugging Assistant"/>
+			<Control name="BtTool" text="Dev Tools"/>						
+			<Control name="BtApplicationMarket" text="App Market"/>	
+			<Control name="BtAbout" text="About Software"/>
+			<Control name="BtAtApp" text="AT Debug"/>
+			
+			
+			
+			<Control name="labelModule" text="Model:"/>		
+			<Control name="labelPort" text="Serial Number:"/>				
+			<Control name="labelBautrate" text="Baud Rate:"/>			
+			<Control name="labelState" text="State:"/>	
+			
+			<Control name="labelPortChosse" text="Serial Number:"/>
+			<Control name="labelCheck" text="Parity Bit:"/>		
+			<Control name="label10" text="Stop Bit:"/>	
+			
+			<Control name="label7" text="Baud Rate:"/>
+			<Control name="label9" text="Data Bit:"/>
+			
+			<Control name="buttonShowLog" text="Log"/>	
+			
+			<Control name="BT_SwitchPort" text="Open Serial Port" CloseText="Close Serial Port"/>									
+			<Control name="BT_SwitchPortHead" text="Open Serial Port" CloseText="Close Serial Port"/>
+		
+		</Controls>
+	</Form>
+	<Form>
+		<Name>ChildForm_Home</Name>
+		<Controls>
+		<!--
+		<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			<Control name="buttonWeb" text="save"/>	
+			<Control name="buttonSelect" text="sned"/>	
+			performance,
+			
+			
+			<Control name="label1" text="Ai-Thinker"/>
+			<Control name="label19" text="Based on Ai-Thinker Internet of Things platform service open products,diverse forms of cooperation,more integrated services,high cost performance"/>			
+			<Control name="label2" text="Core team with 5 years of industry experience,mature software, core supply chain resources,3000+ customer service experience."/>	
+			<Control name="label3" text="Full range of wireless modules"/>
+			<Control name="label4" text="Cost-effective intelligent networking module,built-in MCU,friendly secondary development interface;The Internet of Things cloud with high "/>	
+			<Control name="label20" text="performance,high reliability and high scalability can quickly intervene in the third-party intelligent cloud platform;can directly use the standard APP,development 0 investment"/>
+			<Control name="label8" text="Rapid response, sample verification"/>
+			<Control name="label11" text="Multiple standardized product lines facilitate fast proofing,verification and delivery;Passed the ISO9001 international quality system certification,so that the timeliness and quality to achieve unprecedented balance."/>
+			<Control name="label13" text="Technical Services"/>
+			
+			<Control name="label16" text="DOCS database, forums,emails and other platforms to provide technical services,complete API interface,and various SDK packages, greatly shorten the integration time,facilitate mass production and quickly landing of product."/>
+			
+		 -->	
+			<Control name="buttonSelect" text="Select Product"/>	
+			<Control name="buttonConnect" text="Connect"/>	
+			<Control name="buttonWeb" text="Offical Website"/>	
+			
+			
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>ChildForm_ToolApp</Name>
+		<Controls>
+		<!--		
+		 -->
+		 <Control name="label1" text="Common Software"/>
+		 <Control name="label2" text="Burning Software"/>
+		 <Control name="label3" text=" Debug Software"/>
+			
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>ChildForm_ApplicationMarketApp</Name>
+		<Controls>
+		<!--		
+		 -->
+		 <Control name="labelWifi" text="WIFI Firmware"/>
+		 <Control name="labelBle" text="BLE Firmware"/>
+			
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>ChildForm_About</Name>
+		<Controls>
+		<!--
+			
+			
+			
+		 -->
+		 <Control name="button1" text="Check For Updates"/>
+		 <Control name="label1" text="The Revision Log Of The Universal Debugging Assistant Of Aithinker Module"/>
+		 <Control name="textBoxLog" text="Release/v2.0.2.9
+1.Tools to cloud download
+Release/v2.0.2.8
+1.Add Rd type tool
+2.New Series Classification in the Application Market
+3.Replace the Chinese and English icons
+4.Add Alibaba Cloud IoT Platform Configuration Tool
+Release/v2.0.2.7
+1.Added a scroll bar to the serial port receiving window in AT debugging
+2.Add Chinese version switch
+3.New cloud application firmware market
+4.Unified interface format"/>
+			
+		</Controls>
+	</Form>
+	
+	
+	<Form>
+		<Name>at_form_atDebug</Name>
+		<Controls>
+		<!--
+			
+			
+			
+		 -->
+		 <Control name="at_form_atDebug" text="AT Debug"/>
+		 <Control name="label1" text="AT command"/>
+		 <Control name="label5" text="Send"/>
+		 <Control name="label2" text="sequence"/>
+		 <Control name="label3" text="Delay ms"/>
+		 
+		 
+		 <Control name="buttonJump" text="Jump"/>
+		 <Control name="buttonLastPage" text="previous page"/>
+		 <Control name="buttonNextPage" text="next page"/>
+		 <Control name="buttonDeletePage" text="delete page"/>
+		 <Control name="buttonAddPage" text="add page"/>
+		 <Control name="LoopSendCheckBox" text="Cyclic transmission"/>
+		 <Control name="button13" text="Automatic loop transmission"/>
+		 <Control name="buttonSave" text="Save"/>
+		 <Control name="buttonLoad" text="Load"/>
+		 <Control name="buttonRecover" text="restore"/>
+		 <Control name="buttonCleanAll" text="Empty"/>
+		 
+		 
+		 <Control name="checkBoxEnter" text="CRLF"/>
+		 <Control name="checkBoxShowTime" text="Display Time"/>
+		 <Control name="checkBoxHexShow" text="Display"/>
+		 <Control name="checkBoxHexSend" text="Send"/>
+		 <Control name="buttonCleanShow" text="clear display"/>
+		 <Control name="ChkTimerSend" text="timed transmission"/>
+		 <Control name="buttonNote" text="annotation"/>
+		 
+		 <Control name="DebugButtonSend" text="Send"/>
+		 <Control name="buttonSaveShowLog" text="Save"/>	
+			
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>ChildForm_AtApp</Name>
+		<Controls>
+			<Control name="textBox1" text="General Function "/>
+			
+			<Control name="button6" text="At Doc"/>	
+			<Control name="button5" text="At Debug"/>	
+			<Control name="BT_IO_CONTROL" text="Io Control"/>	
+			<Control name="buttonWeb" text="Module Consult"/>						
+			<Control name="buttonTaoBao" text="Taobao Consult"/>	
+			
+			
+			
+			
+			<Control name="WIFIFunctionTextBox" text="WIFI Function"/>			
+			<Control name="WifiTxtWifiMode" text="Current Mode:"/>			
+			<Control name="TxtApName" text="Hotspot Name:"/>
+			<Control name="TxtWifiName" text="Connected WIFI:"/>
+			
+			<Control name="bt_wifiSetting" text="WIFI Set"/>
+			<Control name="buttonNetCom" text="Net Communication"/>
+			<Control name="buttonMqtt" text="MQTT Set"/>
+							
+			<Control name="buttonHhtp" text="HTTP Set"/>
+			<Control name="buttonSntp" text="SNTP Set"/>
+			<Control name="buttonPing" text="PING Test"/>
+			
+			
+			<Control name="buttonDNS" text="DNS"/>
+			
+			
+			<Control name="textBox3" text="BLE Function"/>
+			<Control name="TxtBtMode" text="Current Mode:"/>			
+			<Control name="TxtBtMac" text="Connected Mac:"/>	
+			
+			<Control name="BtnBleSetting" text="BLE Set"/>	
+			<Control name="BtnBleServer" text="BLE Service"/>	
+			<Control name="BtnBleSpp" text="BLE SeriaNet"/>	
+			
+			
+			
+			
+			<Control name="textBox4" text="LORA Function"/>
+			<Control name="button3" text="LORA Communication"/>			
+
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>ComForm_UartLog</Name>
+		<Controls>						
+			<Control name="ComForm_UartLog" text="Log"/>
+			<Control name="BtnSend" text="Send"/>
+			
+			
+			
+
+		</Controls>
+	</Form>
+	<Form>
+		<Name>uc_UartLog</Name>
+		<Controls>						
+			<Control name="TspClr" ToolTipText="Clean Log"/>
+			<Control name="TspSave" ToolTipText="Save Log"/>
+			<Control name="定时发送ToolStripMenuItem" ToolTipText="Timed Transmission"/>
+			<Control name="moreToolStripMenuItem" ToolTipText="More Settings"/>
+			<Control name="Ms_ToolStripMenuItem" text="Ms/Times"/>
+			<Control name="TspAddEnter" text="Enter"/>
+			<Control name="TspShowTime" text="Display Time"/>
+			
+			
+
+		</Controls>
+	</Form>
+	
+	
+	
+
+
+	
+	
+	<Form>
+		<Name>ComForm_SelectModule</Name>
+		<Controls>						
+			<Control name="label2" text="Module Series:"/>
+			<Control name="label3" text="Module Model:"/>
+			<Control name="ButtonOk" text="Confirm"/>
+			<Control name="ButtonCancle" text="Cancel"/>
+			
+			
+
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>at_form_wifiSetting</Name>
+		<Controls>						
+			<Control name="at_form_wifiSetting" text="WIFI Set"/>
+			<Control name="buttonUpdateMode" text="Refresh"/>
+			<Control name="label3" text="Current Mode:"/>
+			<Control name="buttonSetNone" text="Disable WIFI"/>
+			
+			<Control name="buttonSetAp" text="Set to AP Mode"/>
+			<Control name="buttonSetSta" text="Set to Station"/>
+			<Control name="buttonSetAPSta" text="Set AP+STA"/>
+			
+			<Control name="label11" text="Current Hotspot Status:"/>
+			<Control name="ButtonUpdateAp" text="Refresh"/>
+			<Control name="label9" text="Password:"/>
+			
+			<Control name="label8" text="Channel:"/>
+			<Control name="label7" text="WPA-PSK:"/>
+			<Control name="label6" text="Max Connection"/>
+			
+			<Control name="checkBoxVisibleSsid" text="Hide SSID"/>
+			<Control name="ButtonGetApIp" text="Check IP"/>
+			<Control name="ButtonApSet" text="Resetting"/>
+			
+			
+			<Control name="label2" text="Station Model"/>
+			<Control name="label5" text="Currently Connected WIFI:"/>
+			<Control name="ButtonGetStaIp" text="Check IP"/>
+			
+			
+			<Control name="buttonUpdateScan" text="Refresh Scan"/>
+			<Control name="buttonDisc" text="Disconnect"/>
+			<Control name="buttonConnect" text="Specified Connection"/>
+			
+			
+			
+			
+			
+
+		</Controls>
+	</Form>
+	
+	
+	<Form>
+		<Name>at_form_WifiCommunication</Name>
+		<Controls>		
+			<Control name="at_form_WifiCommunication" text="Net Communication"/>
+			<Control name="BtnUpdate" text="Refresh"/>
+			<Control name="BtnConnect" text="Connection"/>
+			<Control name="BtnTransparentStart" text="Enter transparent mode"/>
+			<Control name="BtnTransparentExit" text="Exit transparent mode"/>
+			
+			<Control name="ChkShowTime" text="Show time"/>
+			
+			<Control name="CheckShowHex" text="HEX Show"/>
+			<Control name="BtnSend" text="Send"/>
+			<Control name="BtnClrShow" text="Clear the display+STA"/>
+			
+			<Control name="BtnSaveShow" text="Save data"/>
+			
+			
+			
+			
+
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>at_form_WifiCommunication_ComboAt</Name>
+		<Controls>
+			<Control name="at_form_WifiCommunication_ComboAt" text="Net Communication"/>
+			<Control name="BtnUpdate" text="Refresh"/>
+			<Control name="BtnConnect" text="Connection"/>
+			<Control name="BtnTransparentStart" text="Enter Transparent Mode"/>
+			<Control name="ChkShowTime" text="Show Time"/>
+			
+			<Control name="CheckShowHex" text="HEX Show"/>
+			<Control name="BtnSend" text="Send"/>
+			<Control name="BtnClrShow" text="Clear The Display"/>
+			
+			<Control name="BtnSaveShow" text="Save Data"/>
+			
+			
+			
+			
+
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>at_form_mqtt</Name>
+		<Controls>		
+			<Control name="at_form_mqtt" text="MQTT Set"/>
+			<Control name="labelAddTpc" text="Add Subscription"/>
+			<Control name="BtnConnect" text="Connection"/>
+			<Control name="BtnUpdate" text="Refresh"/>
+			<Control name="Bt_expand_setting" text="Set"/>
+			
+			<Control name="button2" text="Test Receiver"/>
+			
+			<Control name="buttonSend" text="Send"/>
+
+			
+			
+			
+
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>at_form_http</Name>
+		<Controls>		
+			<Control name="at_form_http" text="HTTP Set"/>
+
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>at_form_ping</Name>
+		<Controls>		
+			<Control name="at_form_ping" text="PING Set"/>
+
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>at_form_http_ComboAt</Name>
+		<Controls>		
+			<Control name="at_form_http_ComboAt" text="HTTP Set"/>
+
+		</Controls>
+	</Form>
+	
+	<Form>
+		<Name>at_form_mqtt_ComboAt</Name>
+		<Controls>
+			<Control name="at_form_mqtt_ComboAt" text="MQTT Set"/>
+			<Control name="labelAddTpc" text="Add Subscription"/>
+			<Control name="BtnConnect" text="Connection" DisconnectText="Disconnect"/>
+			<Control name="BtnUpdate" text="Refresh"/>
+			<Control name="Bt_expand_setting" text="Set"/>
+			
+			<Control name="button2" text="Test Receiver"/>
+			
+			<Control name="buttonSend" text="Send"/>
+			
+
+			<Control name="checkBoxAutoCon" text="Automatic connection"/>
+			<Control name="checkBoxClrSession" text="Clear Session"/>
+			<Control name="label7" text="Connection timeout (seconds)"/>
+			<Control name="label8" text="Testament Message Topic"/>
+			<Control name="checkBoxLwtRetain" text="Will Message Retention Flag"/>
+			<Control name="label10" text="Will Message Qos"/>
+			<Control name="label9" text="Testamentary message"/>
+			<Control name="buttonSend" text="Send"/>
+			
+			
+			
+
+		</Controls>
+	</Form>
+		
+	<Form>
+		<Name>at_form_sntp</Name>
+		<Controls>						
+			<Control name="label19" text="SNTP Set"/>
+			<Control name="buttonsntpset" text="Set"/>
+			<Control name="label17" text="SNTP Time："/>
+			<Control name="buttonSNTP" text="Get Time"/>			
+		</Controls>	
+	</Form>
+	
+	<Form>
+		<Name>at_from_dns</Name>
+		<Controls>						
+			<Control name="label15" text="Domain Name："/>
+			<Control name="buttonParDomain" text="Resolve a domain name"/>
+			<Control name="label16" text=" Analysis result："/>
+			
+		</Controls>
+	</Form>
+	
+
+	
+	<Form>
+		<Name>at_form_espBleSetting</Name>
+		<Controls>						
+			<Control name="label1" text="BLE Set"/>
+			<Control name="LbllRole" text="BLE Set"/>
+			<Control name="LblShowMac" text="Connected Devices："/>
+			<Control name="BtnUpdateMode" text="Refresh"/>
+			
+			
+			<Control name="BtnSetMaster" text="Switch To Host"/>	
+			<Control name="button5" text="Set MYU"/>	
+			<Control name="button3" text="Update Connection Parameters"/>					
+			<Control name="BtnMDisc" text="Disconnect"/>	
+			<Control name="BtnUpdateScan" text="Refresh Scan"/>	
+			
+			
+			
+			<Control name="BtnSetSalve" text="Switch To Slave"/>	
+			<Control name="label2" text="Min Broadcast Interval:"/>	
+			<Control name="label3" text="Max Broadcast Interval:"/>	
+			<Control name="label4" text="Broadcast Type:"/>	
+			<Control name="label5" text="Address Type:"/>	
+			<Control name="label6" text="BCH:"/>	
+			<Control name="BtnGetParam" text="Querying Broadcast Parameters"/>
+			
+			
+			<Control name="label8" text="ESSID："/>	
+			<Control name="label10" text="Manufacturer Data:"/>	
+			<Control name="ChkShowTxPwr" text="Display TX Power:"/>	
+			<Control name="BtnGetAdvData" text="Querying Broadcast Parameters"/>	
+			<Control name="BtnSetAdvData" text="Setting Broadcast Parameters"/>	
+			<Control name="BtnStartAdv" text="Switch On Broadcast"/>
+			
+			<Control name="BtnStopAdv" text="Stop Broadcast"/>	
+			<Control name="BtnSDisc" text="Disconnect:"/>	
+			
+			
+			
+			
+			<Control name="BtnModeSetNOne" text="Disable BLE"/>	
+			<Control name="button8" text="Refresh"/>	
+			<Control name="button7" text="Set Packet Length"/>
+			<Control name="BtnSetParam" text="Set Broadcast Parameters"/>
+			
+			<Control name="tabPage1" text="Host"/>
+			<Control name="tabPage2" text="Slave"/>
+			<Control name="tabPage3" text="Basic Function"/>
+			
+			<Control name="tabPage4" text="Set Broadcast data"/>
+			<Control name="tabPage5" text="Set The RAW Data For Broadcast"/>
+			<Control name="tabPage6" text="Set Up Local Service"/>
+
+			
+			<Control name="详细ToolStripMenuItem" text="Detail"/>
+
+		</Controls>	
+	</Form>
+	
+	<Form>
+		<Name>at_form_espBleSetting_ComboAt</Name>
+		<Controls>		
+			<Control name="label1" text="BLE Set"/>
+			<Control name="LbllRole" text="BLE Set"/>
+			<Control name="LblShowMac" text="Connected devices："/>
+			<Control name="BtnUpdateMode" text="Refresh"/>
+			
+			
+			<Control name="BtnSetMaster" text="Switch to host"/>	
+			<Control name="button5" text="Set MYU"/>	
+			<Control name="button3" text="Update connection parameters"/>					
+			<Control name="BtnMDisc" text="Disconnect"/>	
+			<Control name="BtnUpdateScan" text="Refresh scan"/>	
+			
+			
+			
+			<Control name="BtnSetSalve" text="Switch to slave"/>	
+			<Control name="label2" text="Min broadcast interval:"/>	
+			<Control name="label3" text="Max broadcast interval:"/>	
+			<Control name="label4" text="Broadcast Type:"/>	
+			<Control name="label5" text="Address type:"/>	
+			<Control name="label6" text="BCH:"/>	
+			<Control name="BtnGetParam" text="Querying broadcast parameters"/>
+			
+			
+			<Control name="label8" text="ESSID："/>	
+			<Control name="label10" text="Manufacturer data:"/>	
+			<Control name="ChkShowTxPwr" text="Display TX power:"/>	
+			<Control name="BtnGetAdvData" text="Querying broadcast parameters"/>	
+			<Control name="BtnSetAdvData" text="Setting broadcast parameters"/>	
+			<Control name="BtnStartAdv" text="Switch on broadcast"/>
+			
+			<Control name="BtnStopAdv" text="Stop broadcast"/>	
+			<Control name="BtnSDisc" text="Disconnect:"/>	
+			
+			
+			
+			
+			<Control name="BtnModeSetNOne" text="Disable BLE"/>	
+			<Control name="button8" text="Refresh"/>	
+			<Control name="button7" text="Set packet length"/>
+			<Control name="BtnSetParam" text="Set broadcast parameters"/>
+			
+			<Control name="tabPage1" text="Host"/>
+			<Control name="tabPage2" text="Slave"/>
+			<Control name="tabPage3" text="Basic function"/>
+			
+			<Control name="tabPage4" text="Set broadcast data"/>
+			<Control name="tabPage5" text="Set the RAW data for broadcast"/>
+			<Control name="tabPage6" text=" Set up local service"/>
+			
+			
+			<Control name="详细ToolStripMenuItem" text=" Detail"/>
+			<Control name="连接ToolStripMenuItem" text="Connect"/>
+			
+			
+						
+
+		</Controls>	
+	</Form>
+	
+
+	<Form>
+		<Name>at_form_espBleSeriver</Name>
+		<Controls>						
+			<Control name="label1" text="BLE GATT Serve"/>
+			<Control name="tabPage3" text="Test"/>
+			<Control name="BtnCFindSer" text="Search Service Characteristics"/>
+			<Control name="button3" text="Enable CCCDS"/>
+			
+			
+			<Control name="label2" text="Detailed Info："/>	
+			<Control name="LblCharOrDesc" text="Eigenvalues"/>	
+			<Control name="button1" text="Enable Info"/>					
+			<Control name="BtnReadCValue" text="Read Service Characteristic Value"/>	
+			<Control name="BtnWriteCValue" text="Write Service Characteristic Values"/>	
+			
+			
+			
+			<Control name="BtnSFindSer" text="Query Service Characteristics"/>	
+			<Control name="label4" text="Detailed Info："/>	
+			<Control name="LblSCharOrDesc" text="Eigenvalues"/>	
+			<Control name="BtnWriteSNotify" text="Write Notify Values"/>	
+			<Control name="BtnWriteSIndecate" text="Write Indicate Values"/>	
+			<Control name="BtnWriteSValue" text="Write Service Characteristic Values"/>	
+			<Control name="button6" text="Add Service"/>
+			
+			
+			<Control name="button9" text="Add Feature"/>	
+			
+			
+			
+
+		</Controls>	
+	</Form>
+	
+	
+	<Form>
+		<Name>at_form_espBleSPP</Name>
+		<Controls>						
+			<Control name="label1" text="BLE SeriaNet"/>
+			<Control name="label2" text="Send："/>
+			<Control name="label4" text="TX Service Number"/>
+			<Control name="label5" text="TX Feature Number"/>
+			
+			
+			<Control name="label3" text="Send："/>	
+			<Control name="label6" text="Receive RX Service Serial Number"/>	
+			<Control name="label7" text="Receive TX Feature Number"/>					
+			<Control name="BtnClrShowRecv" text="Clear Display"/>	
+			<Control name="ChbShowTime" text="Show Time"/>	
+			
+			
+			
+			<Control name="BtnGetSppParm" text="Querying Configuration Parameters"/>	
+			<Control name="BtnSetSppParm" text="Set Configuration Parameters"/>	
+			<Control name="BtnSppStart" text="nable The Transparent Mode"/>	
+			<Control name="BtnSppStop" text="Closed Transmission Mode"/>	
+			<Control name="BtnSend" text="Send"/>	
+
+			
+			
+
+		</Controls>	
+	</Form>
+	
+	<Form>
+		<Name>at_form_espBleSPP_ComAt</Name>
+		<Controls>	
+			<Control name="label1" text="BLE SeriaNet"/>		
+			<Control name="label2" text="Send："/>
+			<Control name="label4" text="TX service Number"/>
+			<Control name="label5" text="Receive TX Feature Number"/>
+			
+			
+			<Control name="label3" text="Send："/>	
+			<Control name="label6" text="Receive RX Service Serial Number"/>	
+			<Control name="label7" text="Receive TX Feature Number"/>					
+			<Control name="BtnClrShowRecv" text="Clear Display"/>	
+			<Control name="ChbShowTime" text="Show Time"/>	
+			
+			
+			
+			<Control name="BtnGetSppParm" text="Querying Configuration Parameters"/>	
+			<Control name="BtnSetSppParm" text="Set Configuration Parameters"/>	
+			<Control name="BtnSppStart" text="Nable The Transparent Mode"/>	
+			<Control name="BtnSppStop" text="Closed Transmission Mode"/>	
+			<Control name="BtnSend" text="Send"/>	
+			
+			
+			<Control name="label8" text="Main Service:"/>	
+			<Control name="label9" text="Service:"/>	
+			<Control name="label10" text="RX Service:"/>	
+			
+			<Control name="textBoxHelp" text="  For Bluetooth LE clients, the tx service feature attribute must be write with response or write without response, and the rx service feature attribute must be indicate or notify.
+  For Bluetooth LE servers, the tx service feature attribute must be indicate or notify, and the rx service feature attribute must be write with response or write without response.
+  After disabling the automatic reconnection function, if the connection is disconnected, there will be a disconnection message prompt (depending on AT+SYSMSG), which requires resending the connection command; When enabled, after the connection is disconnected, it will automatically reconnect, and the MCU side will not sense the disconnection. If the MAC of the opposite end changes, the connection cannot be successful."/>
+
+			
+			
+
+		</Controls>	
+	</Form>
+	
+	<Form>
+		<Name>ComFrom_AddMqttTpc</Name>
+		<Controls>						
+			<Control name="button1" text="Cancel"/>
+			<Control name="ButtonOk" text="Confirm"/>			
+		</Controls>	
+	</Form>	
+	
+	
+	<Form>
+		<Name>ComForm_WifiInfo</Name>
+		<Controls>						
+
+			<Control name="label2" text="Security"/>
+			<Control name="label3" text="MAC address："/>
+			<Control name="label4" text="channel："/>
+			
+			
+			<Control name="label5" text="frequency deviation："/>	
+			<Control name="label6" text=" Frequency offset calibration value："/>	
+			<Control name="label7" text="Pair password type："/>					
+			<Control name="label8" text="Group cipher type："/>	
+			<Control name="label9" text="technical standard："/>							
+			
+			
+
+		</Controls>	
+	</Form>
+	
+	<Form>
+		<Name>ComForm_ConnectAP</Name>
+		<Controls>						
+			<Control name="LabelInputNote" text="please enter"/>
+			<Control name="labelPasswd" text="password"/>
+			<Control name="ButtonConnect" text="Connect"/>
+			<Control name="ButtonCancel" text="Cancel"/>
+
+		</Controls>	
+	</Form>
+	
+	<Form>
+		<Name>uc_StationListMember</Name>
+		<Controls>						
+			<Control name="ButtonMore" text="Detail"/>
+
+		</Controls>	
+	</Form>
+	
+	<Form>
+		<Name>ComForm_BleInfo</Name>
+		<Controls>						
+
+			<Control name="label3" text="Device Type："/>
+			<Control name="label2" text="Transmitting power class："/>
+			<Control name="label4" text="Vendor-defined data："/>
+			
+			
+			<Control name="label5" text=" Full 16Mbit service UUID："/>	
+					
+			
+			
+
+		</Controls>	
+	</Form>
+	
+</Softinfo>
+

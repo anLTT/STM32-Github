@@ -1,0 +1,974 @@
+{
+  //json 配置文件 适配规则
+  "AT_JSON_ADAPTATION_RULES": {
+    //适配规则 A1，如有AT指令有较大差异时，可添加新规则，自适应适配不同规则
+    "RULES": "A1",
+    "RULE_VERSION": "1.6.1",
+    "MODEL": "bl602",
+    "MODEL_INFO": ""
+
+  },
+
+  //显示AT 应用
+  "AT_APP_SHOW": {
+
+    "PANEL": [ "AT_COM_PANEL", "AT_WIFI_PANEL", "AT_BT_PANEL" ],
+    "AT_COM_PANEL": {
+      "AT_HELP": "yes",
+      "AT_DEBUG": "yes",
+      "AT_IO_CONTROL": "no",
+      "AT_WEB_INFO": "yes"
+    },
+
+    "AT_WIFI_PANEL": {
+      "AT_WIFI_SETTING": "yes",
+      "AT_NET_COM": "yes",
+      "AT_MQTT": "yes",
+      "AT_HTTP": "yes",
+      "AT_SNTP": "yes",
+      "AT_PING": "yes",
+      "AT_DNS": "yes"
+    },
+    "AT_BT_PANEL": {
+      "AT_BLE_SETTING": "yes",
+      "AT_BLE_MESH": "no",
+      "AT_BLE_SPP": "yes",
+      "AT_BLE_SERIVER": "yes"
+    }
+  },
+  //AT 应用  帮助文档
+	"AT_HELP": {
+		//"doc_path": "https://www.kdocs.cn/l/cvBK8K7CObPZ"
+		"doc_path": "https://aithinker-combo-guide.readthedocs.io/en/latest/index.html",
+		"English_doc_path": "https://aithinker-combo-guide-en.readthedocs.io/en/latest/index.html"
+		//"doc_path": "module\\\\wifi_series\\\\BL602\\\\AT指令.pdf"
+	},
+
+  //AT 应用  模组网站
+	"AT_WEB_INFO": {
+		"url": "https://docs.ai-thinker.com/wifi",
+		"English_url": "https://docs.ai-thinker.com/en/wifi"
+	},
+  //AT 淘宝  模组网站
+  "AT_TAO_BAO_INFO": {
+    "url": "https://anxinke.taobao.com"
+  },
+  
+  //AT 应用  AT指令集
+  "AT_DEBUG": {
+    "src_path": "module\\wifi_series\\BL602\\bl602.xlsx"
+  },
+
+  //主界面 连接，获取版本信息
+  "AT_HOME_CONNECT": {
+    "CONNECT": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT\r\n", 2000, 0, 5 ],
+        //响应值，数据头，数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "GET_INFO": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT+GMR\r\n", 2000, 100, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "{@SOC_INFO}\r\nOK\r\n", "AT version", "OK\r\n", false, false ]
+      }
+    ],
+    //默认参数，不进行转化
+    "SOC_INFO": {
+      "": ""
+    }
+  },
+
+  //AT 应用 WIFI设置功能
+  "AT_WIFI_SETTING": {
+    //获取WIFI 模式
+    "GET_MODE": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT+CWMODE?\r\n", 2000, 0, 1 ],
+        //响应值，数据头,多条响应,是否异步
+        "AT_RESPONSE": [ "+CWMODE:{@WIFI_MODE}\r\n\r\nOK\r\n", "+CWMODE:", "OK\r\n", false, false ]
+      }
+    ],
+    //设置WIFI 模式
+    "SET_MODE": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT+CWMODE={@WIFI_MODE}\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    //获取 热点列表（扫描热点）
+    "GET_LIST_APS": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT+CWLAP\r\n", 5000, 0, 1 ],
+        //响应值，数据头,数据尾（获取时去掉尾部）,多条响应,是否异步
+        "AT_RESPONSE": [ "+CWLAP:({@ECN},{@SSID}\",{@RSSI},{@MAC},{@CHANNEL},{@FREQ_OFFSET},{@FREQCAL_VAL},{@PAIRWISE_CIPHER},{@GROUP_CIPHER},{@BGN},{@WPS})\r\n", "+CWLAP:", "{\r\n\r\nOK\r\n}", true, false ]
+      }
+    ],
+    "CONNECT_AP": [
+      {
+        //命令，10秒超时，延时，重试次数
+        "AT_CMD": [ "AT+CWJAP={@SSID},{@PASSWD}\r\n", 10000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "GET_CONNECT_AP": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT+CWJAP?\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "+CWJAP:{@SSID},{@BSSID},{@CHANNEL},{@RSSI},{@PCI_EN},{@RECONN_INTERVAL},{@LISTEN_INTERVAL},{@SCAN_MODE},{@PMF}\r\n\r\nOK\r\n", "+CWJAP:", "OK\r\n", false, false ]
+      }
+    ],
+    "DISCONNECT_AP": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT+CWQAP\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "GET_APMODE_INFO": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT+CWSAP?\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "+CWSAP:{@SSID},{@PASSWD},{@CHANNEL},{@ECN},{@MAX_CONN},{@SSID_HIDDEN}\r\n\r\nOK\r\n", "+CWSAP:", "OK\r\n", false, false ]
+      }
+    ],
+    "SET_APMODE_INFO": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT+CWSAP={@SSID},{@PASSWD},{@CHANNEL},{@ECN},{@MAX_CONN},{@SSID_HIDDEN}\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "GET_AP_IP": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT+CIPAP?\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "+CIPAP:ip:{@IP}\r\n+CIPAP:gateway:{@GATEWAY}\r\n+CIPAP:netmask:{@NETMASK}\r\n{@ELSE}OK\r\n", "+CIPAP:ip", "OK\r\n", false, false ]
+      }
+    ],
+    "GET_STA_IP": [
+      {
+        //命令，超时，延时，重试次数
+        "AT_CMD": [ "AT+CIPSTA?\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "+CIPSTA:ip:{@IP}\r\n+CIPSTA:gateway:{@GATEWAY}\r\n+CIPSTA:netmask:{@NETMASK}\r\n{@ELSE}OK\r\n", "+CIPSTA:ip", "OK\r\n", false, false ]
+      }
+    ],
+
+    "GATEWAY": {
+      "": ""
+    },
+    "NETMASK": {
+      "": ""
+    },
+    "IP": {
+      "": ""
+    },
+
+    "PASSWD": {
+      "": ""
+    },
+    "MAX_CONN": {
+      "": ""
+    },
+    "SSID_HIDDEN": {
+      "HIDDEN_TRUE": "1",
+      "HIDDEN_FALSE": "0"
+    },
+    //以下数据转化接口
+    "WIFI_MODE": {
+      "NONE": "0", //WIFI_MODE:"0"
+      "STATION": "1", //WIFI_MODE:"1"
+      "SOFTAP": "2",
+      "STA_AP": "3"
+    },
+    "ECN": {
+      "UNKNOW": "-1",
+      "OPEN": "0",
+      "WEP": "1",
+      "WPA_PSK": "2",
+      "WPA2_PSK": "3",
+      "WPA_WPA2_PSK": "4",
+      "WPA2_ENTERPRISE": "5",
+      "WPA3_PSK": "6",
+      "WPA2_WPA3_PSK": "7",
+      "WAPI_PSK": "8"
+    },
+    "SSID": {
+      "": ""
+    },
+    "RSSI": {
+      "": ""
+    },
+    "MAC": {
+      "": ""
+    },
+    "CHANNEL": {
+      "": ""
+    },
+    "FREQ_OFFSET": {
+      "": ""
+    },
+    "FREQCAL_VAL": {
+      "": ""
+    },
+    "PAIRWISE_CIPHER": {
+      "NONE": "0",
+      "WEP40": "1",
+      "WEP104": "2",
+      "TKIP": "3",
+      "CCMP": "4",
+      "TKIP_AND_CCMP": "5",
+      "AES_CMAC_128": "6",
+      "UNKNOWN": "7"
+    },
+    "GROUP_CIPHER": {
+      "NONE": "0",
+      "WEP40": "1",
+      "WEP104": "2",
+      "TKIP": "3",
+      "CCMP": "4",
+      "TKIP_AND_CCMP": "5",
+      "AES_CMAC_128": "6",
+      "UNKNOWN": "7"
+    },
+    //按位0 1 2
+    "BGN": {
+      "": ""
+    },
+    "WPS": {
+      "": ""
+    }
+  },
+  "AT_NET_COM": {
+    "AT_GET_STATE": [
+      {
+        "AT_CMD": [ "AT+CIPSTATE?\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "+CIPSTATE:{@LINK_ID},{@LINK_TYPE},{@REMOTE_IP},{@REMOTE_PORT},{@LOCAL_PORT},{@TETYPE}\r\n\r\nOK\r\n", "+CIPSTATE:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_CLIENT_CONNECT": [
+      {
+        "AT_CMD": [ "AT+CIPSTART={@LINK_TYPE},{@REMOTE_HOST},{@REMOTE_PORT}\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "CONNECT\r\n\r\nOK\r\n", "CONNECT", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_CLIENT_DISCONNECT": [
+      {
+        "AT_CMD": [ "AT+CIPCLOSE\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "CLOSED\r\n\r\nOK\r\n", "CLOSED", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_SERVER_CONNECT": [
+      {
+        "AT_CMD": [ "AT+CIPMUX=1\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      },
+      {
+        "AT_CMD": [ "AT+CIPSERVER=1,{@LOCAL_PORT},{@LINK_TYPE},0\r\n", 2000, 100, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_SERVER_DISCONNECT": [
+      {
+        "AT_CMD": [ "AT+CIPSERVER=0,1\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      },
+      {
+        "AT_CMD": [ "AT+CIPMUX=0\r\n", 2000, 100, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_CLIENT_DATA_ASYN_RECV": [
+      {
+        "AT_CMD": [ "", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "+IPD,{@DATALEN}:{@DATA}", "+IPD", "\r\n", false, true ]
+      }
+    ],
+    "AT_SERVER_DATA_ASYN_RECV": [
+      {
+        "AT_CMD": [ "", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "+IPD,{@ID},{@DATALEN}:{@DATA}", "+IPD", "\r\n", false, true ]
+      }
+    ],
+    "AT_CLIENT_DATA_SEND_READY": [
+      {
+        "AT_CMD": [ "AT+CIPSEND={@DATALEN}\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "OK\r\n\r\n>", "OK", ">", false, false ]
+      }
+    ],
+    "AT_SERVER_DATA_SEND_READY": [
+      {
+        "AT_CMD": [ "AT+CIPSEND=0,{@DATALEN}\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "OK\r\n\r\n>", "OK", ">", false, false ]
+      }
+    ],
+    "AT_CLIENT_DATA_SEND_DATA": [
+      {
+        "AT_CMD": [ "{@DATA}", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "SEND OK\r\n", "SEND", "\r\n", false, false ]
+      }
+    ],
+    "ID": {
+      "": ""
+    },
+    "DATALEN": {
+      "": ""
+    },
+    "DATA": {
+      "": ""
+    },
+    "REMOTE_HOST": {
+      "": ""
+    },
+    "LINK_ID": {
+      "": ""
+    },
+    "LINK_TYPE": {
+      "TYPE_TCP": "\"TCP\"",
+      "TYPE_UDP": "\"UDP\"",
+      "TYPE_SSL": "\"SSL\""
+    },
+    "REMOTE_IP": {
+      "": ""
+    },
+    "REMOTE_PORT": {
+      "": ""
+    },
+    "LOCAL_PORT": {
+      "": ""
+    },
+    "TETYPE": {
+      "CLIENT": "0",
+      "SERVER": "1"
+    }
+  },
+
+  "AT_DNS": {
+    "AT_GET_DNS_RESULT": [
+      {
+        "AT_CMD": [ "AT+CIPDOMAIN={@DOMAIN},{@IP_NET}\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "+CIPDOMAIN:{@IP_ADDR}\r\n\r\nOK\r\n", "+CIPDOMAIN:", "OK\r\n", false, false ]
+      }
+    ],
+    "DOMAIN": {
+      "": ""
+    },
+    "IP_NET": {
+      "IPv4_Preferred": "1",
+      "IPv4_only": "2",
+      "IPv6_only": "3"
+    },
+    "IP_ADDR": {
+      "": ""
+    }
+
+  },
+  "AT_MQTT": {
+    "AT_GET_STATE": [
+      {
+        "AT_CMD": [ "AT+MQTTCONN?\r\n", 2000, 0, 1 ],
+        //响应值，数据头,数据尾,多条响应,是否异步
+        "AT_RESPONSE": [ "+MQTTCONN:0,{@state},{@scheme},{@host},{@port},{@path},{@reconnect}\r\n\r\nOK\r\n", "+MQTTCONN:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_MQTT_USER_CFG_SET": [
+      {
+        "AT_CMD": [ "AT+MQTTUSERCFG=0,{@scheme},{@client_id},{@username},{@password},0,0,\"\"\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_MQTT_CON_CFG_SET": [
+      {
+        "AT_CMD": [ "AT+MQTTCONNCFG=0,{@keepalive},{@disable_clean_session},{@lwt_topic},{@lwt_msg},{@lwt_qos},{@lwt_retain}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_MQTT_CONNECT": [
+      {
+        "AT_CMD": [ "AT+MQTTCONN=0,{@host},{@port},{@reconnect}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+
+    "AT_MQTT_DISCONNECT": [
+      {
+        "AT_CMD": [ "AT+MQTTCLEAN=0\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_MQTT_PUB_MSG": [
+      {
+        "AT_CMD": [ "AT+MQTTPUB=0,{@topic},{@tpc_data},{@tpc_qos},{@tpc_retain}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_MQTT_PUB_RAWMSG_REDAY": [
+      {
+        "AT_CMD": [ "AT+MQTTPUBRAW=0,{@topic},{@length},{@tpc_qos},{@tpc_retain}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n\r\n>", "OK", ">", false, false ]
+      }
+    ],
+    "AT_MQTT_PUB_RAWMSG_DATA": [
+      {
+        "AT_CMD": [ "{@tpc_data}", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+MQTTPUB:OK\r\n", "+MQTTPUB:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_MQTT_SUB": [
+      {
+        "AT_CMD": [ "AT+MQTTSUB=0,{@topic},{@tpc_qos}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_MQTT_SUB_RECV_ASYN": [
+      {
+        "AT_CMD": [ "", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+MQTTSUBRECV:0,{@topic},{@length},{@tpc_data}\r\n", "+MQTTSUBRECV:", "\r\n", false, true ]
+      }
+    ],
+
+    "AT_MQTT_GET_SUB_LIST": [
+      {
+        "AT_CMD": [ "AT+MQTTSUB?\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+MQTTSUB:0,{@state},{@topic},{@tpc_qos}\r\n", "+MQTTSUB:", "{\r\nOK\r\n}", true, false ]
+      }
+    ],
+    "AT_MQTT_UNSUB": [
+      {
+        "AT_CMD": [ "AT+MQTTUNSUB=0,{@topic}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+
+    "length": {
+      "": ""
+    },
+    "tpc_retain": {
+
+    },
+    "tpc_qos": {
+      "": ""
+    },
+    "tpc_data": {
+      "": ""
+    },
+    "topic": {
+      "": ""
+    },
+    "lwt_retain": {
+      "": ""
+    },
+    "lwt_qos": {
+      "": ""
+    },
+    "lwt_msg": {
+      "": ""
+    },
+    "lwt_topic": {
+      "": ""
+    },
+    "disable_clean_session": {
+      "ENABLE": "0",
+      "DISABLE": "1"
+    },
+    "keepalive": {
+      "": ""
+    },
+    "client_id": {
+      "": ""
+    },
+    "username": {
+      "": ""
+    },
+    "password": {
+      "": ""
+    },
+    "state": {
+      "UNINITIALIZED": "0",
+      "USERCFG_IS_SET": "1",
+      "CONCFG_IS_SET": "2",
+      "DISCONNECTED": "3",
+      "CONNECTED": "4",
+      "CONNECTED_NOT_TPC": "5",
+      "CONNECTED_SUBED_TPC": "6"
+    },
+    "host": {
+      "": ""
+    },
+    "port": {
+      "": ""
+    },
+    "scheme": {
+      "": ""
+    },
+    "path": {
+      "": ""
+    },
+    "reconnect": {
+      "": ""
+    }
+  },
+  "AT_SNTP": {
+    "AT_GET_SNTP_TIME": [
+      {
+        "AT_CMD": [ "AT+CIPSNTPTIME?\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+CIPSNTPTIME:{@TIME}\r\nOK\r\n", "+CIPSNTPTIME:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_SET_SNTP_CFG": [
+      {
+        "AT_CMD": [ "AT+CIPSNTPCFG=1,{@TZ},{@TZURL}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "TIME": {
+      "": ""
+    },
+    "TZ": {
+      "": ""
+    },
+    "TZURL": {
+      "": ""
+    }
+  },
+  "AT_PING": {
+    "AT_SET_PING": [
+      {
+        "AT_CMD": [ "AT+PING={@host}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+PING:{@time}\r\n\r\nOK\r\n", "+PING:", "OK\r\n", false, false ]
+      }
+    ],
+    "host": {
+      "": ""
+    },
+    "time": {
+      "": ""
+    }
+  },
+  "AT_HTTP": {
+    "AT_SET_HTTP_REQUEST": [
+      {
+        "AT_CMD": [ "AT+HTTPCLIENT={@opt},{@content-type},{@url},{@host},{@path},{@transport_type},{@data}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "{@data}", "+HTTPCLIENT:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_SET_HTTP_REQUEST_NO_DATA": [
+      {
+        "AT_CMD": [ "AT+HTTPCLIENT={@opt},{@content-type},{@url},{@host},{@path},{@transport_type}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "{@data}", "+HTTPCLIENT:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_SET_HTTP_RESPONSE_ASYN": [
+      {
+        "AT_CMD": [ "", 5000, 0, 1 ],
+        "AT_RESPONSE": [ "{@data}", "+HTTPCLIENT:", "\r\n", false, true ]
+      }
+    ],
+    "opt": {
+      "HEAD": "1",
+      "GET": "2",
+      "POST": "3",
+      "PUT": "4",
+      "DELETE": "5"
+    },
+    "content-type": {
+      "application/x-www-form-urlencoded": "0",
+      "application/json": "1",
+      "multipart/form-data": "2",
+      "text/xml": "3"
+    },
+    "url": {
+      "": ""
+    },
+    "host": {
+      "": ""
+    },
+    "path": {
+      "": ""
+    },
+    "transport_type": {
+      "HTTP_TRANSPORT_OVER_TCP": "1",
+      "HTTP_TRANSPORT_OVER_SSL": "2"
+    },
+    "data": {
+      "": ""
+    },
+    "size": {
+      "": ""
+    }
+  },
+  "AT_BLE_SETTING": {
+    "AT_GET_ROLE": [
+      {
+        "AT_CMD": [ "AT+BLEINIT?\r\n", 2000, 0, 1 ],
+		"AT_RESPONSE": [ "+BLEINIT:{@role}\r\nOK\r\n", "+BLEINIT:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_SET_ROLE": [
+      {
+        "AT_CMD": [ "AT+BLEINIT={@role}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "\r\nOK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_GET_SCAN_LIST_SEND": [
+      {
+        "AT_CMD": [ "AT+BLESCAN=1,2\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "\r\nOK\r\n", "\r\n", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_GET_SCAN_LIST_ASYN": [
+      {
+        "AT_CMD": [ "", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLESCAN:{@mac},{@rssi},{@raw},{@rsp_raw},{@addr_type}", "+BLESCAN:", "\r\n", true, true ]
+      }
+    ],
+    "AT_BLE_CONN": [
+      {
+        "AT_CMD": [ "AT+BLECONN=0,{@mac},{@addr_type},3\r\n", 3000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLECONN:0,{@mac}", "+BLECONN:", "\r\nOK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_CONN_ASYN": [
+      {
+        "AT_CMD": [ "", 3000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLECONN:0,\"{@Con_mac}\"\r\n", "+BLECONN:", "\r\n", false, true ]
+      }
+    ],
+    "AT_BLE_DISCONN": [
+      {
+        "AT_CMD": [ "AT+BLEDISCONN=0\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_GET_CONN": [
+      {
+        "AT_CMD": [ "AT+BLECONN?\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLECONN:0,{@mac}\r\n", "+BLECONN:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_GET_SELF_MAC": [
+      {
+        "AT_CMD": [ "AT+BLENAME?\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLECONN:0,{@mac}\r\n", "+BLECONN:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_GET_ADV_PARAM": [
+      {
+        "AT_CMD": [ "AT+BLEADVPARAM?\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLEADVPARAM:{@adv_int_min},{@adv_int_max},{@adv_type},{@own_addr_type},{@channel_map},{@adv_filter_policy},{@peer_addr_type},\"{@peer_addr}\"\r\nOK\r\n", "+BLEADVPARAM:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SET_ADV_PARAM": [
+      {
+        "AT_CMD": [ "AT+BLEADVPARAM={@adv_int_min},{@adv_int_max},{@adv_type},{@own_addr_type},{@channel_map}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SET_ADV_RAW_DATA": [
+      {
+        "AT_CMD": [ "AT+BLEADVDATA=\"{@adv_data}\"\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SET_ADV_RSP_RAW_DATA": [
+      {
+        "AT_CMD": [ "AT+BLESCANRSPDATA=\"{@scan_rsp_data}\"\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_GET_ADV_DATAEX": [
+      {
+        "AT_CMD": [ "AT+BLEADVDATAEX?\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLEADVDATAEX:\"{@dev_name}\",\"{@uuid}\",\"{@manufacturer_data}\",{@include_power}\r\nOK\r\n", "+BLEADVDATAEX:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SET_ADV_DATAEX": [
+      {
+        "AT_CMD": [ "AT+BLEADVDATAEX=\"{@dev_name}\",\"{@uuid}\",\"{@manufacturer_data}\",{@include_power}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_ADV_START": [
+      {
+        "AT_CMD": [ "AT+BLEADVSTART\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_ADV_STOP": [
+      {
+        "AT_CMD": [ "AT+BLEADVSTOP\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SERVER_CREATE": [
+      {
+        "AT_CMD": [ "AT+BLEGATTSSRVCRE\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SERVER_START_ALL": [
+      {
+        "AT_CMD": [ "AT+BLEGATTSSRVSTART\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SERVER_START_INDEX": [
+      {
+        "AT_CMD": [ "AT+BLEGATTSSRVSTART={@srv_index}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SERVER_STOP_INDEX": [
+      {
+        "AT_CMD": [ "AT+BLEGATTSSRVSTOP={@srv_index}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SERVER_STOP_ALL": [
+      {
+        "AT_CMD": [ "AT+BLEGATTSSRVSTOP\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "srv_index": {
+      "": ""
+    },
+    "Con_mac": {
+      "": ""
+    },
+    "dev_name": {
+      "": ""
+    },
+    "uuid": {
+      "": ""
+    },
+    "manufacturer_data": {
+      "": ""
+    },
+    "include_power": {
+      "": ""
+    },
+    "scan_rsp_data": {
+      "": ""
+    },
+    "adv_data": {
+      "": ""
+    },
+    "adv_int_max": {
+      "": ""
+    },
+    "adv_int_min": {
+      "": ""
+    },
+    "adv_type": {
+      "ADV_TYPE_IND": "0",
+      "ADV_TYPE_DIRECT_IND_HIGH": "1",
+      "ADV_TYPE_SCAN_IND": "2",
+      "ADV_TYPE_NONCONN_IND": "3",
+      "ADV_TYPE_DIRECT_IND_LOW": "4"
+    },
+    "own_addr_type": {
+      "BLE_ADDR_TYPE_PUBLIC": "0",
+      "BLE_ADDR_TYPE_RANDOM": "1"
+    },
+    "channel_map": {
+      "ADV_CHNL_37": "1",
+      "ADV_CHNL_38": "2",
+      "ADV_CHNL_39": "4",
+      "ADV_CHNL_ALL": "7"
+    },
+    "adv_filter_policy": {
+      "": ""
+    },
+    "peer_addr": {
+      "": ""
+    },
+    "peer_addr_type": {
+      "": ""
+    },
+    "role": {
+      "role_peripheral": "2",
+      "role_center": "1",
+      "role_none": "0"
+    },
+    "mac": {
+      "": ""
+    },
+    "rssi": {
+      "": ""
+    },
+    "raw": {
+      "": ""
+    },
+    "rsp_raw": {
+      "": ""
+    },
+    "addr_type": {
+      "BLE_ADDR_TYPE_PUBLIC": "0",
+      "BLE_ADDR_TYPE_RANDOM": "1"
+    }
+  },
+  "AT_BLE_SERIVER": {
+    "AT_BLE_CLIENT_GET_SER_LIST": [
+      {
+        "AT_CMD": [ "AT+BLEGATTCPRIMSRV=0\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLEGATTCPRIMSRV:0,{@srv_index},{@srv_uuid},{@srv_type}\r\n", "+BLEGATTCPRIMSRV:", "{\r\n\r\nOK\r\n}", true, false ]
+      }
+    ],
+    "AT_BLE_CLIENT_GET_CHAR_LIST": [
+      {
+        "AT_CMD": [ "AT+BLEGATTCCHAR=0,{@srv_index}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLEGATTCCHAR:\"{@char_desc}\",0,{@srv_index},{@char_index},{@cuuid_dindex},{@cprop_duuid}\r\n", "+BLEGATTCCHAR:", "{\r\n\r\nOK\r\n}", true, false ]
+      }
+    ],
+    "AT_BLE_CLIENT_GET_CHAR_VALUE": [
+      {
+        "AT_CMD": [ "AT+BLEGATTCRD=0,{@srv_index},{@char_index}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLEGATTCRD:0,{@char_len},{@char_value}\r\nOK\r\n", "+BLEGATTCRD:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_CLIENT_SET_CHAR_READY": [
+      {
+        "AT_CMD": [ "AT+BLEGATTCWR=0,{@srv_index},{@char_index},{@char_len}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n\r\n>", "OK", ">", false, false ]
+      }
+    ],
+    "AT_BLE_CLIENT_SET_CHAR_VALUE": [
+      {
+        "AT_CMD": [ "{@char_value}", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SERVER_GET_SER_LIST": [
+      {
+        "AT_CMD": [ "AT+BLEGATTSSRV?\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLEGATTSSRV:{@srv_index},{@isstart},{@srv_uuid},{@srv_type}\r\n", "+BLEGATTSSRV:", "{\r\n\r\nOK\r\n}", true, false ]
+      }
+    ],
+    "AT_BLE_SERVER_GET_CHAR_LIST": [
+      {
+        "AT_CMD": [ "AT+BLEGATTSCHAR?\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLEGATTSCHAR:\"{@char_desc}\",{@srv_index},{@char_index},{@cuuid_dindex},{@cprop_duuid}\r\n", "+BLEGATTSCHAR:", "{\r\n\r\nOK\r\n}", true, false ]
+      }
+    ],
+    "AT_BLE_SERVER_SET_CHAR_READY": [
+      {
+        "AT_CMD": [ "AT+{@at_func_par}={@SetCharparam1}{@srv_index},{@char_index},{@char_len}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n\r\n>", "OK", ">", false, false ]
+      }
+    ],
+    "AT_BLE_SERVER_SET_CHAR_VALUE": [
+      {
+        "AT_CMD": [ "{@char_value}", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "SetCharparam1": {
+      "charIsNull": "",
+      "charIsValue": "0,"
+    },
+    "at_func_par": {
+      "write": "BLEGATTSSETATTR",
+      "notify": "BLEGATTSNTFY",
+      "indicate": "BLEGATTSIND"
+    },
+    "char_value": {
+      "": ""
+    },
+    "char_len": {
+      "": ""
+    },
+    "cprop_duuid": {
+      "": ""
+    },
+    "cuuid_dindex": {
+      "": ""
+    },
+    "char_index": {
+      "": ""
+    },
+    "char_desc": {
+      "": ""
+    },
+    "srv_index": {
+      "": ""
+    },
+    "srv_uuid": {
+      "": ""
+    },
+    "srv_type": {
+      "": ""
+    }
+  },
+  "AT_BLE_SPP": {
+    "AT_BLE_GET_SPP_PARAM": [
+      {
+        "AT_CMD": [ "AT+BLESPPCFG?\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "+BLESPPCFG:{@tx_srv_index},{@tx_chr_index},{@rx_srv_index},{@rx_chr_index},{@AutoConnect}\r\nOK\r\n", "+BLESPPCFG:", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SET_SPP_PARAM": [
+      {
+        "AT_CMD": [ "AT+BLESPPCFG=0\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      },
+      {
+        "AT_CMD": [ "AT+BLESPPCFG=1,{@tx_srv_index},{@tx_chr_index},{@rx_srv_index},{@rx_chr_index}\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n", "", "OK\r\n", false, false ]
+      }
+    ],
+    "AT_BLE_SPP_START": [
+      {
+        "AT_CMD": [ "AT+BLESPP\r\n", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "OK\r\n\r\n>", "OK", ">", false, false ]
+      }
+    ],
+    "AT_BLE_SPP_STOP": [
+      {
+        "AT_CMD": [ "+++", 2000, 0, 1 ],
+        "AT_RESPONSE": [ "", "", "", false, false ]
+      }
+    ],
+    "tx_srv_index": {
+      "": ""
+    },
+    "tx_chr_index": {
+      "": ""
+    },
+    "rx_srv_index": {
+      "": ""
+    },
+    "rx_chr_index": {
+      "": ""
+    }
+  }
+
+}

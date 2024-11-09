@@ -112,6 +112,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    //UART2串口进行回调串口2的接收
   }
   /* USER CODE END 3 */
 }
