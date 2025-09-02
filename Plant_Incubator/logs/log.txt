@@ -1,0 +1,56 @@
+[2025-08-06 14:14:39.746] "*****************************************************Log Start*****************************************************[2.7.5.2]"
+
+[2025-08-06 14:14:39.747] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:39.762] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:39.762] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:39.998] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:39.998] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:40.007] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:40.007] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:40.007] [INFO ] - "LocalLangType : 1"
+[2025-08-06 14:14:40.020] [INFO ] - "trackThinkDataEvent  eventName =  setup_open"
+[2025-08-06 14:14:40.020] [DEBUG] - track-time :  "2025-08-06 14:14:40.020"
+[2025-08-06 14:14:40.048] [INFO ] - "Support https : 1 , openssl buildversion: OpenSSL 1.1.1g  21 Apr 2020 , version : OpenSSL 1.1.1t  7 Feb 2023"
+[2025-08-06 14:14:40.048] [INFO ] - "postDataTrackRequest - url :https://datacollection-en.sl916.com/receiver/app"
+[2025-08-06 14:14:40.048] [WARN ] - QObject::connect: No such slot ThinkingDataReport::sslErrors(QNetworkReply*, QList<QSslError>)
+[2025-08-06 14:14:40.048] [WARN ] - QObject::connect:  (receiver name: 'SLAbstractNetwork')
+[2025-08-06 14:14:42.463] [INFO ] - "result data :"
+[2025-08-06 14:14:42.463] [INFO ] - "ThinkingDataReport result =  json is null"
+[2025-08-06 14:14:45.281] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:45.281] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:45.461] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:45.461] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:45.462] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:45.462] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:45.582] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:45.582] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:46.308] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:46.308] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:46.308] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:46.308] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:46.324] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:14:46.324] [DEBUG] - Unknown property text-shadow
+[2025-08-06 14:15:10.940] [INFO ] - "postRequest - url :http://gamesdk-en.sl916.com/pc/conversion/upload"
+[2025-08-06 14:15:10.940] [INFO ] - "SLAbstractNetwork"
+[2025-08-06 14:15:10.940] [WARN ] - QObject::connect: No such slot GADataReport::sslErrors(QNetworkReply*, QList<QSslError>)
+[2025-08-06 14:15:10.940] [WARN ] - QObject::connect:  (receiver name: 'SLAbstractNetwork')
+[2025-08-06 14:15:10.940] [INFO ] - "{\"adFid\":\"\",\"appPackageInfo\":{\"adFid\":\"\",\"appInstallTime\":\"\",\"appPackageName\":\"com.bluepoch.m.reverse1999.enlauncher\",\"appSignature\":\"\",\"appUpdateTime\":\"\",\"appVersion\":\"\",\"appVersionName\":\"2.5.1.0\",\"channelId\":\"200\",\"channelVersion\":\"\",\"gameCode\":\"reverse1999\",\"gameId\":\"60001\",\"gameName\":\"reverse1999-en-launcher\",\"gclid\":\"\",\"sdkVersion\":\"\",\"subChannelId\":\"6001\"},\"conversionActionName\":\"click_autoloader_download\",\"deviceInfo\":{\"buildName\":\"winnt-10.0.26100-x86_64\",\"deviceId\":\"3693495803\",\"deviceManufacturer\":\"winnt-10.0.26100-x86_64\",\"deviceName\":\"Windows 10 Version 2009\",\"displayHeight\":\"1392\",\"displayWidth\":\"2560\",\"hardware\":\"AMD Ryzen 9 7940HX with Radeon Graphics\",\"osType\":3,\"osVersion\":\"10\"},\"gclid\":\"\",\"uploadType\":\"once\"}"
+[2025-08-06 14:15:10.940] [INFO ] - "trackThinkDataEvent  eventName =  setup_install_start"
+[2025-08-06 14:15:10.940] [DEBUG] - track-time :  "2025-08-06 14:15:10.940"
+[2025-08-06 14:15:10.942] [INFO ] - "postDataTrackRequest - url :https://datacollection-en.sl916.com/receiver/app"
+[2025-08-06 14:15:10.944] [WARN ] - QObject::connect: No such slot ThinkingDataReport::sslErrors(QNetworkReply*, QList<QSslError>)
+[2025-08-06 14:15:10.944] [WARN ] - QObject::connect:  (receiver name: 'SLAbstractNetwork')
+[2025-08-06 14:15:12.122] [INFO ] - "result data :{\"code\":4001,\"msg\":\"\xE7\xBC\xBA\xE5\xB0\x91\xE5\x8F\x82\xE6\x95\xB0\"}"
+[2025-08-06 14:15:12.125] [INFO ] - "result data :"
+[2025-08-06 14:15:12.125] [INFO ] - "ThinkingDataReport result =  json is null"
+[2025-08-06 14:15:18.061] [WARN ] - QWindowsWindow::setGeometry: Unable to set geometry 2048x1152+1546+872 (frame: 2048x1152+1546+872) on QWidgetWindow/"InstallPageWindow" on "\\.\DISPLAY1". Resulting geometry: 3072x1728+1546+872 (frame: 3072x1728+1546+872) margins: 0, 0, 0, 0)
+[2025-08-06 14:15:33.676] [INFO ] - "postRequest - url :http://gamesdk-en.sl916.com/pc/conversion/upload"
+[2025-08-06 14:15:33.676] [INFO ] - "SLAbstractNetwork"
+[2025-08-06 14:15:33.676] [WARN ] - QObject::connect: No such slot GADataReport::sslErrors(QNetworkReply*, QList<QSslError>)
+[2025-08-06 14:15:33.676] [WARN ] - QObject::connect:  (receiver name: 'SLAbstractNetwork')
+[2025-08-06 14:15:33.677] [INFO ] - "{\"adFid\":\"\",\"appPackageInfo\":{\"adFid\":\"\",\"appInstallTime\":\"\",\"appPackageName\":\"com.bluepoch.m.reverse1999.enlauncher\",\"appSignature\":\"\",\"appUpdateTime\":\"\",\"appVersion\":\"\",\"appVersionName\":\"2.5.1.0\",\"channelId\":\"200\",\"channelVersion\":\"\",\"gameCode\":\"reverse1999\",\"gameId\":\"60001\",\"gameName\":\"reverse1999-en-launcher\",\"gclid\":\"\",\"sdkVersion\":\"\",\"subChannelId\":\"6001\"},\"conversionActionName\":\"autoloader_completed\",\"deviceInfo\":{\"buildName\":\"winnt-10.0.26100-x86_64\",\"deviceId\":\"3693495803\",\"deviceManufacturer\":\"winnt-10.0.26100-x86_64\",\"deviceName\":\"Windows 10 Version 2009\",\"displayHeight\":\"1392\",\"displayWidth\":\"2560\",\"hardware\":\"AMD Ryzen 9 7940HX with Radeon Graphics\",\"osType\":3,\"osVersion\":\"10\"},\"gclid\":\"\",\"uploadType\":\"once\"}"
+[2025-08-06 14:15:33.677] [INFO ] - "trackThinkDataEvent  eventName =  setup_install_finish"
+[2025-08-06 14:15:33.677] [DEBUG] - track-time :  "2025-08-06 14:15:33.677"
+[2025-08-06 14:15:33.680] [INFO ] - "postDataTrackRequest - url :https://datacollection-en.sl916.com/receiver/app"
+[2025-08-06 14:15:33.680] [WARN ] - QObject::connect: No such slot ThinkingDataReport::sslErrors(QNetworkReply*, QList<QSslError>)
+[2025-08-06 14:15:33.680] [WARN ] - QObject::connect:  (receiver name: 'SLAbstractNetwork')
