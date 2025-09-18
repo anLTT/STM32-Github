@@ -30,7 +30,6 @@
 .\objects\main.o: .\Library\misc.h
 .\objects\main.o: .\System\Delay.h
 .\objects\main.o: .\System\delay\delay_1.h
-.\objects\main.o: .\Hardware\OLED.h
 .\objects\main.o: .\Hardware\Key.h
 .\objects\main.o: .\System\Timer.h
 .\objects\main.o: .\Hardware\LCD\lcd.h

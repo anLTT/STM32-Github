@@ -929,7 +929,7 @@ I (.\Library\stm32f10x_wwdg.h)(0x68B1B648)
 I (.\Library\misc.h)(0x68B1B647)
 I (Hardware\Key.h)(0x68B1B647)
 F (.\Hardware\Key.h)(0x68B1B647)()
-F (.\User\main.c)(0x68B597D2)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware -I .\Hardware\FONT -I .\Hardware\LCD -I .\Hardware\SPI -I .\System\delay -I .\System\sys -I .\Hardware\I2C -I .\Hardware\SCD30-I.\RTE\_Target_1-ID:\Software\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Software\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="526" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\User\main.c)(0x68CC250E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware -I .\Hardware\FONT -I .\Hardware\LCD -I .\Hardware\SPI -I .\System\delay -I .\System\sys -I .\Hardware\I2C -I .\Hardware\SCD30-I.\RTE\_Target_1-ID:\Software\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Software\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="526" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\Start\stm32f10x.h)(0x68B1B649)
 I (.\Start\core_cm3.h)(0x68B1B648)
 I (D:\Software\Keil\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
@@ -962,7 +962,7 @@ I (.\System\Delay.h)(0x68B1B649)
 I (.\System\delay\delay_1.h)(0x68B1C0B4)
 I (.\Hardware\Key.h)(0x68B1B647)
 I (.\System\Timer.h)(0x68B1B649)
-I (.\Hardware\LCD\lcd.h)(0x68B20115)
+I (.\Hardware\LCD\lcd.h)(0x68C2A292)
 I (.\System\sys\sys.h)(0x5B6BE71E)
 I (D:\Software\Keil\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
 I (D:\Software\Keil\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
@@ -1002,8 +1002,8 @@ I (.\Library\misc.h)(0x68B1B647)
 F (.\User\stm32f10x_it.h)(0x68B1B649)()
 F (.\Hardware\FONT\font.c)(0x68B1E226)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware -I .\Hardware\FONT -I .\Hardware\LCD -I .\Hardware\SPI -I .\System\delay -I .\System\sys -I .\Hardware\I2C -I .\Hardware\SCD30-I.\RTE\_Target_1-ID:\Software\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Software\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="526" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\font.o --omf_browse .\objects\font.crf --depend .\objects\font.d)
 I (Hardware\FONT\font.h)(0x68B1E226)
-F (.\Hardware\LCD\lcd.c)(0x68B200EA)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware -I .\Hardware\FONT -I .\Hardware\LCD -I .\Hardware\SPI -I .\System\delay -I .\System\sys -I .\Hardware\I2C -I .\Hardware\SCD30-I.\RTE\_Target_1-ID:\Software\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Software\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="526" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
-I (Hardware\LCD\lcd.h)(0x68B20115)
+F (.\Hardware\LCD\lcd.c)(0x68CC245B)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware -I .\Hardware\FONT -I .\Hardware\LCD -I .\Hardware\SPI -I .\System\delay -I .\System\sys -I .\Hardware\I2C -I .\Hardware\SCD30-I.\RTE\_Target_1-ID:\Software\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Software\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="526" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
+I (Hardware\LCD\lcd.h)(0x68C2A292)
 I (.\System\sys\sys.h)(0x5B6BE71E)
 I (.\Start\stm32f10x.h)(0x68B1B649)
 I (.\Start\core_cm3.h)(0x68B1B648)

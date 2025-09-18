@@ -29,7 +29,6 @@
 ".\objects\timer.o"
 ".\objects\led.o"
 ".\objects\key.o"
-".\objects\oled.o"
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"
 ".\objects\font.o"

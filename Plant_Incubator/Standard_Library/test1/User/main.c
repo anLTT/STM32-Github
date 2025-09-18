@@ -326,9 +326,9 @@ u8 jiemian[] =
 int main(void)
 {
 
-	SystemInit();//?????RCC ??????????72MHZ
-	delay_init(72);	     //????????
-	LCD_Init();	   //??????????
+	SystemInit();//RCC 72MHZ
+	delay_init(72);	     
+	LCD_Init();	   
 
 	Timer_Init();
 	
@@ -361,7 +361,8 @@ int main(void)
 		{
 			if(CO2_s && Temperature_s && Humidity_s)
 				
-			{			LCD_ShowInt_3000_Large(14,3,CO2_s);
+			{			
+				LCD_ShowInt_3000_Large(14,3,CO2_s);
 				LCD_ShowFloat_70_Large(14,50,Temperature_s);
 				LCD_ShowInt_3000_Large(14,97,Humidity_s);
 

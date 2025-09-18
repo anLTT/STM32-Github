@@ -1,0 +1,54 @@
+#ifndef __MYIIC_H
+#define __MYIIC_H
+ 
+#include <stdint.h>
+//*********************************************************************************
+//IIC驱动
+//
+//*********************************************************************************
+
+typedef uint32_t  u32;
+typedef uint16_t u16;
+typedef uint8_t  u8;
+
+/****IIC引脚设置****/
+#define IIC_SCL_PORT  GpioPortB
+#define IIC_SCL_PIN   GpioPin1
+#define IIC_SDA_PORT  GpioPortB
+#define IIC_SDA_PIN   GpioPin0
+
+//IO操作函数	 
+#define IIC_SCL    PAout(10) //SCL
+#define IIC_SDA    PAout(11) //SDA	 
+//#define READ_SDA   PAin(12)  //输入SDA 
+#define READ_SDA Gpio_GetInputIO(IIC_SDA_PORT,IIC_SDA_PIN)
+
+//IIC所有操作函数
+void IIC_Init(void);                //初始化IIC的IO口				 
+void IIC_Start(void);				//发送IIC开始信号
+void IIC_Stop(void);	  			//发送IIC停止信号
+void IIC_Send_Byte(u8 txd);			//IIC发送一个字节
+u8 IIC_Read_Byte(unsigned char ack);//IIC读取一个字节
+u8 IIC_Wait_Ack(void); 				//IIC等待ACK信号
+void IIC_Ack(void);					//IIC发送ACK信号
+void IIC_NAck(void);				//IIC不发送ACK信号
+
+void IIC_Write_One_Byte(u8 daddr,u8 addr,u8 data);
+u8 IIC_Read_One_Byte(u8 daddr,u8 addr);	  
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

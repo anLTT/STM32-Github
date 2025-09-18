@@ -1,0 +1,25 @@
+--cpu Cortex-M3
+"3.5lcd\startup_stm32f103xb.o"
+"3.5lcd\main.o"
+"3.5lcd\gpio.o"
+"3.5lcd\spi.o"
+"3.5lcd\stm32f1xx_it.o"
+"3.5lcd\stm32f1xx_hal_msp.o"
+"3.5lcd\stm32f1xx_hal_gpio_ex.o"
+"3.5lcd\stm32f1xx_hal_spi.o"
+"3.5lcd\stm32f1xx_hal.o"
+"3.5lcd\stm32f1xx_hal_rcc.o"
+"3.5lcd\stm32f1xx_hal_rcc_ex.o"
+"3.5lcd\stm32f1xx_hal_gpio.o"
+"3.5lcd\stm32f1xx_hal_dma.o"
+"3.5lcd\stm32f1xx_hal_cortex.o"
+"3.5lcd\stm32f1xx_hal_pwr.o"
+"3.5lcd\stm32f1xx_hal_flash.o"
+"3.5lcd\stm32f1xx_hal_flash_ex.o"
+"3.5lcd\stm32f1xx_hal_exti.o"
+"3.5lcd\system_stm32f1xx.o"
+"3.5lcd\lcd.o"
+--strict --scatter "3.5LCD\3.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "3.map" -o 3.5LCD\3.5LCD

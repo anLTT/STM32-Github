@@ -14,7 +14,9 @@
                 "d:\\Code\\Ann\\STM32-Github\\Plant_Incubator\\Standard_Library\\test_1\\System\\delay",
                 "d:\\Code\\Ann\\STM32-Github\\Plant_Incubator\\Standard_Library\\test_1\\System\\sys",
                 "d:\\Code\\Ann\\STM32-Github\\Plant_Incubator\\Standard_Library\\test_1\\Hardware\\I2C",
-                "d:\\Code\\Ann\\STM32-Github\\Plant_Incubator\\Standard_Library\\test_1\\Hardware\\SCD30"
+                "d:\\Code\\Ann\\STM32-Github\\Plant_Incubator\\Standard_Library\\test_1\\Hardware\\SCD30",
+                "D:\\Software\\Keil\\ARM\\ARMCC\\include",
+                "D:\\Software\\Keil\\ARM\\ARMCC\\include\\rw"
             ],
             "defines": [
                 "USE_STDPERIPH_DRIVER",

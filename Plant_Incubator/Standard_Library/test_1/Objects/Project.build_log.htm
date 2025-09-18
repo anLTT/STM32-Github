@@ -28,27 +28,29 @@ Project File Date:  09/01/2025
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Software\Keil\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling main.c...
-.\Hardware\LCD\lcd.h(76): warning:  #1-D: last line of file ends without a newline
+.\Hardware\LCD\lcd.h(86): warning:  #1-D: last line of file ends without a newline
   #endif
 .\Hardware\SCD30\SCD30.h(56): warning:  #1-D: last line of file ends without a newline
   #endif
 .\Hardware\I2C\MyI2C.h(28): warning:  #1-D: last line of file ends without a newline
   #endif
+User\main.c(371): warning:  #223-D: function "LCD_DrawLine_Mode" declared implicitly
+  	LCD_DrawLine_Mode(5,158);
 User\main.c(339): warning:  #177-D: variable "i"  was declared but never referenced
   		uint8_t i=0;
-User\main.c: 4 warnings, 0 errors
-compiling SCD30.c...
-.\Hardware\I2C\MyI2C.h(28): warning:  #1-D: last line of file ends without a newline
-  #endif
-Hardware\SCD30\SCD30.h(56): warning:  #1-D: last line of file ends without a newline
-  #endif
-Hardware\SCD30\SCD30.c(354): warning:  #1-D: last line of file ends without a newline
-   
-Hardware\SCD30\SCD30.c: 3 warnings, 0 errors
+User\main.c(340): warning:  #177-D: variable "read_statu"  was declared but never referenced
+  		uint8_t read_statu;
+User\main.c(341): warning:  #177-D: variable "CO2_s"  was declared but never referenced
+  		uint16_t CO2_s = 0; //ppm
+User\main.c(342): warning:  #177-D: variable "Temperature_s"  was declared but never referenced
+  		float Temperature_s = 0; //ppm
+User\main.c(343): warning:  #177-D: variable "Humidity_s"  was declared but never referenced
+  		uint16_t Humidity_s = 0; //ppm
+User\main.c: 9 warnings, 0 errors
 linking...
-Program Size: Code=13558 RO-data=3678 RW-data=4848 ZI-data=1632  
+Program Size: Code=10194 RO-data=3678 RW-data=4848 ZI-data=1632  
 FromELF: creating hex file...
-".\Objects\Project.axf" - 0 Error(s), 7 Warning(s).
+".\Objects\Project.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -62,7 +64,7 @@ Package Vendor: Keil
   D:\Software\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

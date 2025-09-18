@@ -193,19 +193,19 @@
         ],
         "folders": [
           {
-            "name": "delay",
+            "name": "sys",
             "files": [
               {
-                "path": "System/delay/delay_1.c"
+                "path": "System/sys/sys.c"
               }
             ],
             "folders": []
           },
           {
-            "name": "sys",
+            "name": "delay",
             "files": [
               {
-                "path": "System/sys/sys.c"
+                "path": "System/delay/delay_1.c"
               }
             ],
             "folders": []
@@ -226,15 +226,6 @@
           },
           {
             "path": "Hardware/Key.h"
-          },
-          {
-            "path": "Hardware/OLED.c"
-          },
-          {
-            "path": "Hardware/OLED.h"
-          },
-          {
-            "path": "Hardware/OLED_Font.h"
           }
         ],
         "folders": [
@@ -261,6 +252,24 @@
             "files": [
               {
                 "path": "Hardware/SPI/SPI.c"
+              }
+            ],
+            "folders": []
+          },
+          {
+            "name": "I2C",
+            "files": [
+              {
+                "path": "Hardware/I2C/MyI2C.c"
+              }
+            ],
+            "folders": []
+          },
+          {
+            "name": "SCD30",
+            "files": [
+              {
+                "path": "Hardware/SCD30/SCD30.c"
               }
             ],
             "folders": []
@@ -437,6 +446,8 @@
           "Hardware/SPI",
           "System/delay",
           "System/sys",
+          "Hardware/I2C",
+          "Hardware/SCD30",
           ".cmsis/include",
           "RTE/_Target 1"
         ],
@@ -470,8 +481,7 @@
             "output-format": "elf",
             "xo-base": "",
             "ro-base": "0x08000000",
-            "rw-base": "0x20000000",
-            "$disableOutputTask": true
+            "rw-base": "0x20000000"
           }
         }
       }

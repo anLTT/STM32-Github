@@ -1,0 +1,14 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "font.h": "c",
+            "key.h": "c"
+        }
+    },
+    "extensions": {}
+}

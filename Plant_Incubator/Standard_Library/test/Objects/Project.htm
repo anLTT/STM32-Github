@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat Aug 30 04:51:48 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Sep 03 18:21:27 2025
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -226,10 +226,10 @@ Global Symbols
 
 <P><STRONG><a name="[4d]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; LCD_ShowFloat_70_Large &rArr; LCD_ShowChar_Large &rArr; transfer_mono_data_30pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; LCD_ShowFloat_70_Large &rArr; LCD_ShowChar_Large &rArr; transfer_mono_data_27pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
+<BR>[Calls]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[db]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
@@ -399,17 +399,17 @@ Global Symbols
 <P><STRONG><a name="[5a]"></a>_printf_pre_padding</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, _printf_pad.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = _printf_pre_padding
 </UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec_real
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_infnan
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec_real
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_int_common
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_infnan
 </UL>
 
 <P><STRONG><a name="[5b]"></a>_printf_post_padding</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, _printf_pad.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = _printf_post_padding
 </UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec_real
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_infnan
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec_real
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_int_common
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_infnan
 </UL>
 
 <P><STRONG><a name="[44]"></a>_printf_int_dec</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, _printf_dec.o(.text))
@@ -457,12 +457,12 @@ Global Symbols
 <P><STRONG><a name="[62]"></a>_printf_fp_dec_real</STRONG> (Thumb, 620 bytes, Stack size 104 bytes, _printf_fp_dec.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 324<LI>Call Chain = _printf_fp_dec_real &rArr; _fp_digits &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassify
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassify
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_infnan
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_locale
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
 </UL>
 <BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec
 </UL>
@@ -586,8 +586,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_div_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[60]"></a>_btod_emul</STRONG> (Thumb, 42 bytes, Stack size 28 bytes, btod.o(CL$$btod_emul))
@@ -596,8 +596,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_mult_common
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[6c]"></a>__btod_mult_common</STRONG> (Thumb, 580 bytes, Stack size 16 bytes, btod.o(CL$$btod_mult_common))
@@ -696,10 +696,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
 </UL>
 
-<P><STRONG><a name="[7e]"></a>LCD_ShowChar_Large</STRONG> (Thumb, 188 bytes, Stack size 48 bytes, lcd.o(i.LCD_ShowChar_Large))
-<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = LCD_ShowChar_Large &rArr; transfer_mono_data_30pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
+<P><STRONG><a name="[7e]"></a>LCD_ShowChar_Large</STRONG> (Thumb, 192 bytes, Stack size 48 bytes, lcd.o(i.LCD_ShowChar_Large))
+<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = LCD_ShowChar_Large &rArr; transfer_mono_data_27pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_30pixel
+<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_27pixel
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_16pixel
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteRAM_Prepare
@@ -710,7 +710,7 @@ Global Symbols
 
 <P><STRONG><a name="[81]"></a>LCD_ShowFloat_70_Large</STRONG> (Thumb, 104 bytes, Stack size 40 bytes, lcd.o(i.LCD_ShowFloat_70_Large))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240 + Unknown Stack Size
-<LI>Call Chain = LCD_ShowFloat_70_Large &rArr; LCD_ShowChar_Large &rArr; transfer_mono_data_30pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
+<LI>Call Chain = LCD_ShowFloat_70_Large &rArr; LCD_ShowChar_Large &rArr; transfer_mono_data_27pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
 </UL>
 <BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
@@ -722,7 +722,7 @@ Global Symbols
 
 <P><STRONG><a name="[84]"></a>LCD_ShowInt_3000_Large</STRONG> (Thumb, 94 bytes, Stack size 32 bytes, lcd.o(i.LCD_ShowInt_3000_Large))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232 + Unknown Stack Size
-<LI>Call Chain = LCD_ShowInt_3000_Large &rArr; LCD_ShowChar_Large &rArr; transfer_mono_data_30pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
+<LI>Call Chain = LCD_ShowInt_3000_Large &rArr; LCD_ShowChar_Large &rArr; transfer_mono_data_27pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
 </UL>
 <BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
@@ -909,11 +909,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a1]"></a>clamp_int16</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, lcd.o(i.clamp_int16))
+<P><STRONG><a name="[a0]"></a>clamp_int16</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, lcd.o(i.clamp_int16))
 <BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a0]"></a>clamp_int8</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, lcd.o(i.clamp_int8))
+<P><STRONG><a name="[a1]"></a>clamp_int8</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, lcd.o(i.clamp_int8))
 <BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -953,7 +953,7 @@ Global Symbols
 
 <P><STRONG><a name="[4e]"></a>main</STRONG> (Thumb, 284 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240 + Unknown Stack Size
-<LI>Call Chain = main &rArr; LCD_ShowFloat_70_Large &rArr; LCD_ShowChar_Large &rArr; transfer_mono_data_30pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
+<LI>Call Chain = main &rArr; LCD_ShowFloat_70_Large &rArr; LCD_ShowChar_Large &rArr; transfer_mono_data_27pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
 </UL>
 <BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
@@ -963,8 +963,8 @@ Global Symbols
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disp_240x160
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clamp_int8
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clamp_int16
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clamp_int8
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clamp_int16
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clamp_float
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_ShowInt_3000_Large
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_ShowFloat_70_Large
@@ -1029,14 +1029,14 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_3pixel
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_21pixel
 </UL>
-<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_30pixel
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_27pixel
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disp_240x160
 </UL>
 
-<P><STRONG><a name="[80]"></a>transfer_mono_data_30pixel</STRONG> (Thumb, 32 bytes, Stack size 24 bytes, lcd.o(i.transfer_mono_data_30pixel))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = transfer_mono_data_30pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
+<P><STRONG><a name="[80]"></a>transfer_mono_data_27pixel</STRONG> (Thumb, 32 bytes, Stack size 24 bytes, lcd.o(i.transfer_mono_data_27pixel))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = transfer_mono_data_27pixel &rArr; transfer_mono_data_24pixel &rArr; transfer_mono_data_21pixel &rArr; transfer_mono_data_18pixel &rArr; transfer_mono_data_15pixel &rArr; transfer_mono_data_12pixel &rArr; transfer_mono_data_9pixel &rArr; transfer_mono_data_6pixel &rArr; transfer_mono_data_3pixel &rArr; LCD_WR_DATA
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_6pixel
+<BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_3pixel
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_24pixel
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_ShowChar_Large
@@ -1049,6 +1049,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_9pixel
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_6pixel
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_27pixel
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_24pixel
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_21pixel
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_18pixel
@@ -1063,7 +1064,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_3pixel
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_9pixel
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_mono_data_30pixel
 </UL>
 
 <P><STRONG><a name="[a3]"></a>transfer_mono_data_9pixel</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, lcd.o(i.transfer_mono_data_9pixel))

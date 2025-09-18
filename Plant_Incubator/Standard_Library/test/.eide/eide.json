@@ -226,15 +226,6 @@
           },
           {
             "path": "Hardware/Key.h"
-          },
-          {
-            "path": "Hardware/OLED.c"
-          },
-          {
-            "path": "Hardware/OLED.h"
-          },
-          {
-            "path": "Hardware/OLED_Font.h"
           }
         ],
         "folders": [
@@ -470,8 +461,7 @@
             "output-format": "elf",
             "xo-base": "",
             "ro-base": "0x08000000",
-            "rw-base": "0x20000000",
-            "$disableOutputTask": true
+            "rw-base": "0x20000000"
           }
         }
       }

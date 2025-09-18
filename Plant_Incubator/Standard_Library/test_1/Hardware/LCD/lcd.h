@@ -73,4 +73,14 @@ float clamp_float(float value, float min, float max);
 int8_t clamp_int8(int8_t value, int8_t min, int8_t max);
 int16_t clamp_int16(int16_t value, int16_t min, int16_t max);
 
+/*-------------------------------------Graphic Drawing------------------------------------------------------------------*/
+// 画点函数（如已有可直接用）
+void LCD_DrawPoint(uint16_t x, uint16_t y);
+// 只画圆的1/4（象限1~4），用于圆角
+void LCD_DrawCirclePart(uint16_t xc, uint16_t yc, uint16_t r, uint8_t quadrant);
+// 绘制圆角矩形
+void LCD_DrawRoundRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint8_t radius, uint8_t lineWidth);
+// 绘制普通矩形
+void LCD_DrawRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint8_t lineWidth);
+
 #endif

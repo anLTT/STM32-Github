@@ -22,12 +22,37 @@ Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
 D:\Code\Ann\STM32-Github\Plant_Incubator\Standard_Library\test\Project.uvprojx
-Project File Date:  08/30/2025
+Project File Date:  09/03/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Software\Keil\ARM\ARMCC\Bin'
 Build target 'Target 1'
-".\Objects\Project.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+.\Hardware\LCD\lcd.h(81): warning:  #1-D: last line of file ends without a newline
+  #endif
+User\main.c: 1 warning, 0 errors
+compiling lcd.c...
+Hardware\LCD\lcd.h(81): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\Hardware\FONT\font.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+Hardware\LCD\lcd.c(91): warning:  #223-D: function "delay_ms" declared implicitly
+  	delay_ms(100);	
+Hardware\LCD\lcd.c(474): warning:  #177-D: variable "temp"  was declared but never referenced
+      u8 temp, i;
+Hardware\LCD\lcd.c(542): warning:  #223-D: function "strlen" declared implicitly
+      len = strlen(buf);
+Hardware\LCD\lcd.c(559): warning:  #223-D: function "strlen" declared implicitly
+      len = strlen(buf);
+Hardware\LCD\lcd.c(574): warning:  #223-D: function "strlen" declared implicitly
+      len = strlen(buf);
+Hardware\LCD\lcd.c(589): warning:  #223-D: function "strlen" declared implicitly
+      len = strlen(buf);
+Hardware\LCD\lcd.c: 8 warnings, 0 errors
+linking...
+Program Size: Code=10784 RO-data=2576 RW-data=4840 ZI-data=1632  
+FromELF: creating hex file...
+".\Objects\Project.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -41,7 +66,7 @@ Package Vendor: Keil
   D:\Software\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
