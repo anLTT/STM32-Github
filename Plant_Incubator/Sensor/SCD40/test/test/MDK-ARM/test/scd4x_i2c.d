@@ -1,9 +1,0 @@
-test\scd4x_i2c.o: ..\Hardware\I2C\scd4x_i2c.c
-test\scd4x_i2c.o: ..\Hardware\I2C\scd4x_i2c.h
-test\scd4x_i2c.o: ..\Hardware\I2C\sensirion_config.h
-test\scd4x_i2c.o: D:\Software\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
-test\scd4x_i2c.o: D:\Software\Keil\ARM\ARMCC\Bin\..\include\stdint.h
-test\scd4x_i2c.o: D:\Software\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
-test\scd4x_i2c.o: ..\Hardware\I2C\sensirion_common.h
-test\scd4x_i2c.o: ..\Hardware\I2C\sensirion_i2c.h
-test\scd4x_i2c.o: ..\Hardware\I2C\sensirion_i2c_hal.h

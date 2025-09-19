@@ -28,29 +28,51 @@ Project File Date:  09/01/2025
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Software\Keil\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling main.c...
-.\Hardware\LCD\lcd.h(86): warning:  #1-D: last line of file ends without a newline
+.\Hardware\LCD\lcd.h(93): warning:  #1-D: last line of file ends without a newline
   #endif
 .\Hardware\SCD30\SCD30.h(56): warning:  #1-D: last line of file ends without a newline
   #endif
 .\Hardware\I2C\MyI2C.h(28): warning:  #1-D: last line of file ends without a newline
   #endif
-User\main.c(371): warning:  #223-D: function "LCD_DrawLine_Mode" declared implicitly
-  	LCD_DrawLine_Mode(5,158);
-User\main.c(339): warning:  #177-D: variable "i"  was declared but never referenced
+User\main.c(340): warning:  #177-D: variable "i"  was declared but never referenced
   		uint8_t i=0;
-User\main.c(340): warning:  #177-D: variable "read_statu"  was declared but never referenced
-  		uint8_t read_statu;
-User\main.c(341): warning:  #177-D: variable "CO2_s"  was declared but never referenced
-  		uint16_t CO2_s = 0; //ppm
-User\main.c(342): warning:  #177-D: variable "Temperature_s"  was declared but never referenced
-  		float Temperature_s = 0; //ppm
-User\main.c(343): warning:  #177-D: variable "Humidity_s"  was declared but never referenced
-  		uint16_t Humidity_s = 0; //ppm
-User\main.c: 9 warnings, 0 errors
+User\main.c: 4 warnings, 0 errors
+compiling lcd.c...
+Hardware\LCD\lcd.h(93): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\Hardware\FONT\font.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+Hardware\LCD\lcd.c(91): warning:  #223-D: function "delay_ms" declared implicitly
+  	delay_ms(100);	
+Hardware\LCD\lcd.c(474): warning:  #177-D: variable "temp"  was declared but never referenced
+      u8 temp, i;
+Hardware\LCD\lcd.c(580): warning:  #223-D: function "strlen" declared implicitly
+      len = strlen(buf);
+Hardware\LCD\lcd.c(597): warning:  #223-D: function "strlen" declared implicitly
+      len = strlen(buf);
+Hardware\LCD\lcd.c(612): warning:  #223-D: function "strlen" declared implicitly
+      len = strlen(buf);
+Hardware\LCD\lcd.c(627): warning:  #223-D: function "strlen" declared implicitly
+      len = strlen(buf);
+Hardware\LCD\lcd.c(696): warning:  #177-D: variable "dat1"  was declared but never referenced
+  	u8 dat1,dat2,dat3;
+Hardware\LCD\lcd.c(696): warning:  #177-D: variable "dat2"  was declared but never referenced
+  	u8 dat1,dat2,dat3;
+Hardware\LCD\lcd.c(696): warning:  #177-D: variable "dat3"  was declared but never referenced
+  	u8 dat1,dat2,dat3;
+Hardware\LCD\lcd.c(713): warning:  #177-D: variable "dat1"  was declared but never referenced
+  	u8 dat1,dat2,dat3;
+Hardware\LCD\lcd.c(713): warning:  #177-D: variable "dat2"  was declared but never referenced
+  	u8 dat1,dat2,dat3;
+Hardware\LCD\lcd.c(713): warning:  #177-D: variable "dat3"  was declared but never referenced
+  	u8 dat1,dat2,dat3;
+Hardware\LCD\lcd.c(836): warning:  #1-D: last line of file ends without a newline
+  }
+Hardware\LCD\lcd.c: 15 warnings, 0 errors
 linking...
-Program Size: Code=10194 RO-data=3678 RW-data=4848 ZI-data=1632  
+Program Size: Code=14162 RO-data=3678 RW-data=4852 ZI-data=1636  
 FromELF: creating hex file...
-".\Objects\Project.axf" - 0 Error(s), 9 Warning(s).
+".\Objects\Project.axf" - 0 Error(s), 19 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -64,7 +86,7 @@ Package Vendor: Keil
   D:\Software\Keil\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

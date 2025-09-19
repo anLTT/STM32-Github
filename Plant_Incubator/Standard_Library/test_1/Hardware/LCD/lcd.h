@@ -83,4 +83,11 @@ void LCD_DrawRoundRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height, 
 // 绘制普通矩形
 void LCD_DrawRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint8_t lineWidth);
 
+void LCD_DrawLine_Mode(uint8_t x, uint8_t y,uint8_t x_total,uint8_t y_total);
+void LCD_ClearLine_Mode(uint8_t x, uint8_t y,uint8_t x_total,uint8_t y_total);
+
+void LCD_ShowString(u16 x, u16 y, const char* str);
+void LCD_ShowString_Large(u16 x, u16 y, const char* str);
+
+
 #endif

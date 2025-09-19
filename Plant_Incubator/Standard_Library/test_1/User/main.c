@@ -17,7 +17,8 @@
 float Num1 = 10.0;
 int8_t CO2 = 0;
 int16_t Humi = 0;//显示和设定分开
-
+uint8_t flag = 0;
+uint8_t confirm_flag = 0;
 
 u8 jiemian[] =
 {
@@ -325,14 +326,14 @@ u8 jiemian[] =
 
 int main(void)
 {
+	//注:延时不要用delay_ms,有范围限制
 
 
+	SystemInit();//?????RCC 72MHZ
+	delay_init(72);	     
+	LCD_Init();	   
 
-	SystemInit();//?????RCC ??????????72MHZ
-	delay_init(72);	     //????????
-	LCD_Init();	   //??????????
 
-		//OLED_Init();
 	//Key_Init();
 	Timer_Init();
 	
@@ -343,8 +344,14 @@ int main(void)
 		uint16_t Humidity_s = 0; //ppm
 
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); //设置NVIC中断分组2:2位抢占优先级，2位响应优先级
-		IIC_Init();
-	
+
+		
+    //SCD30_I2C2_Init();         // 初始化I2C2通信接口
+
+	LCD_ShowString_Large(0, 0, "SCD30");
+
+	Delay_s(3);
+
 	disp_240x160(jiemian);
 	delay_ms(1000);
 
@@ -368,162 +375,235 @@ int main(void)
 //	LCD_DrawPoint(6,3);
 //	LCD_DrawPoint(7,4);
 //	LCD_DrawPoint(0,80);
-	LCD_DrawLine_Mode(5,158);
-	LCD_DrawLine_Mode(5,159);
+
+	// LCD_DrawLine_Mode(5,158,18,2);
+	// LCD_DrawLine_Mode(20,158,18,2);	//只能是3的倍数
+	// LCD_DrawLine_Mode(37,158,18,2);	
+	// LCD_DrawLine_Mode(53,158,18,2);
+	// LCD_DrawLine_Mode(70,158,18,2);
+	
+	// LCD_ClearLine_Mode(5,158,18,2);
+	// Delay_s(1);
+	// LCD_ClearLine_Mode(20,158,18,2);	//只能是3的倍数
+	// Delay_s(1);
+	// LCD_ClearLine_Mode(37,158,18,2);	
+	// Delay_s(1);
+	// LCD_ClearLine_Mode(53,158,18,2);
+	// Delay_s(1);
+	// LCD_ClearLine_Mode(70,158,18,2);
+
+	
 	while (1)
 	{
-////		LCD_ShowChar(0, 0, ' ');//不用这个.自己写的时候会直接将数据进行覆盖
-////		LCD_ShowChar(0, 0, num + '0');
-////		delay_ms(1000);
-////		num++;
-////		if(num > 9) num = 0;
-////		LCD_ShowChar(0, 0, ' ');
-////		LCD_ShowChar_Large(0, 0, num + '0');
-////		delay_ms(200);
-//		
-//		/*示例1*/
-////		if (Key_Check(KEY_1, KEY_HOLD))
-////		{
-////			Num1 = 1;
-////		}
-////		else
-////		{
-////			Num1 = 0;
-////		}
-////		if (Key_Check(KEY_2, KEY_HOLD))
-////		{
-////			Num2 = 1;
-////		}
-////		else
-////		{
-////			Num2 = 0;
-////		}
-//		
-//		/*示例2*/
-////		if (Key_Check(KEY_1, KEY_DOWN))
-////		{
-////			Num1 ++;
-////		}
-////		if (Key_Check(KEY_2, KEY_UP))
-////		{
-////			Num2 ++;
-////		}
-//		
-//		/*示例3*/
-////		if (Key_Check(KEY_1, KEY_SINGLE))
-////		{
-////			Num1 ++;
-////		}
-////		if (Key_Check(KEY_1, KEY_DOUBLE))
-////		{
-////			Num1 += 100;
-////		}
-////		if (Key_Check(KEY_2, KEY_SINGLE))
-////		{
-////			Num1 --;
-////		}
-////		if (Key_Check(KEY_2, KEY_DOUBLE))
-////		{
-////			Num1 -= 100;
-////		}
-////		if (Key_Check(KEY_1, KEY_LONG) || Key_Check(KEY_2, KEY_LONG))
-////		{
-////			Num1 = 0;
-////		}
-//		
-////		/*示例4*/
-////		if (Key_Check(KEY_1, KEY_SINGLE) || Key_Check(KEY_1, KEY_REPEAT))
-////		{
-////			//Num1 ++;
-////			//Num1 += 0.1;
-////			CO2 += 1;
-////			Humi += 1;
-////		}
-////		if (Key_Check(KEY_2, KEY_SINGLE) || Key_Check(KEY_2, KEY_REPEAT))
-////		{
-////			//Num1 -= 0.1;
-////			CO2 -= 1;
-////			Humi -= 1;
-////		}
-////		if (Key_Check(KEY_3, KEY_SINGLE))
-////		{
-////			Num1 = 0;
-////		}
-////		if (Key_Check(KEY_3, KEY_LONG))
-////		{
-////			Num1 = 9999;
-////		}
-//		
-//		/*示例5*/
-////		uint8_t K1_UP = Key_Check(KEY_1, KEY_UP);
-////		uint8_t K2_UP = Key_Check(KEY_2, KEY_UP);
-////		
-////		if (K1_UP && Key_Check(KEY_3, KEY_HOLD))
-////		{
-////			Num1 ++;
-////		}
-////		if (K2_UP && Key_Check(KEY_3, KEY_HOLD))
-////		{
-////			Num1 --;
-////		}
-////		if (K1_UP && Key_Check(KEY_4, KEY_HOLD))
-////		{
-////			Num2 ++;
-////		}
-////		if (K2_UP && Key_Check(KEY_4, KEY_HOLD))
-////		{
-////			Num2 --;
-////		}
-//		
-//				//LCD_ShowChar_Large(0, 0, Num1 + '0');
-////				LCD_ShowFloat_70(0,0,Num1);
 
-//	 //Num1 = clamp_float(Num1, 0.0f, 70.0f);
-//	
-//	 //LCD_ShowFloat_70_Large(14, 3, Num1);
-//	// 			delay_ms(1000);
-//	// LCD_ShowFloat_70_Large(14, 50, Num1);
-//	
-//	// 			delay_ms(1000);	
-//				
-//	// 			LCD_ShowFloat_70_Large(14, 97, Num1);
-//	
-//	// 			delay_ms(1000);
-//	
-//	 //CO2 = clamp_int8(CO2, 0, 100);
+		switch (flag)
+        {
+            case 0:
+				LCD_ClearLine_Mode(5,158,18,2);
+				LCD_ClearLine_Mode(20,158,18,2);	//只能是3的倍数
+				LCD_ClearLine_Mode(37,158,18,2);	
+				LCD_ClearLine_Mode(53,158,18,2);
+				LCD_ClearLine_Mode(70,158,18,2);
 
-//	//LCD_ShowInt_3000_Large(14,50,CO2);
-////					delay_ms(200);
-////Humi = clamp_int16(Humi, 0, 3000);
+                LCD_DrawLine_Mode(5,158,18,2);
+                
+                break;
+            case 1:
+				LCD_ClearLine_Mode(5,158,18,2);
+				LCD_ClearLine_Mode(20,158,18,2);	//只能是3的倍数
+				LCD_ClearLine_Mode(37,158,18,2);	
+				LCD_ClearLine_Mode(53,158,18,2);
+				LCD_ClearLine_Mode(70,158,18,2);
 
-//	//LCD_ShowInt_3000_Large(14,97,Humi);
-//					//delay_ms(200);
+				LCD_DrawLine_Mode(20, 158, 18, 2);
 
+				break;
+            case 2:
+				LCD_ClearLine_Mode(5,158,18,2);
+				LCD_ClearLine_Mode(20,158,18,2);	//只能是3的倍数
+				LCD_ClearLine_Mode(37,158,18,2);	
+				LCD_ClearLine_Mode(53,158,18,2);
+				LCD_ClearLine_Mode(70,158,18,2);
 
-//			read_statu = SCD30_readMeasurement(&CO2_s, &Temperature_s, &Humidity_s);
-//		if(read_statu)
+				LCD_DrawLine_Mode(37, 158, 18, 2);
+                break;
+            case 3:
+				LCD_ClearLine_Mode(5,158,18,2);
+				LCD_ClearLine_Mode(20,158,18,2);	//只能是3的倍数
+				LCD_ClearLine_Mode(37,158,18,2);	
+				LCD_ClearLine_Mode(53,158,18,2);
+				LCD_ClearLine_Mode(70,158,18,2);
+
+				LCD_DrawLine_Mode(53, 158, 18, 2);
+                break;
+            case 4:
+				LCD_ClearLine_Mode(5,158,18,2);
+				LCD_ClearLine_Mode(20,158,18,2);	//只能是3的倍数
+				LCD_ClearLine_Mode(37,158,18,2);	
+				LCD_ClearLine_Mode(53,158,18,2);
+				LCD_ClearLine_Mode(70,158,18,2);
+
+				LCD_DrawLine_Mode(70, 158, 18, 2);
+                break;
+			case 6:
+				flag = 0;
+				break;
+
+			default:
+				break;
+        }
+//		LCD_ShowChar(0, 0, ' ');//不用这个.自己写的时候会直接将数据进行覆盖
+//		LCD_ShowChar(0, 0, num + '0');
+//		delay_ms(1000);
+//		num++;
+//		if(num > 9) num = 0;
+//		LCD_ShowChar(0, 0, ' ');
+//		LCD_ShowChar_Large(0, 0, num + '0');
+//		delay_ms(200);
+		
+		/*示例1*/
+//		if (Key_Check(KEY_1, KEY_HOLD))
 //		{
-//			if(CO2_s && Temperature_s && Humidity_s)
-//				
-//			{			LCD_ShowInt_3000_Large(14,3,CO2_s);
-//				LCD_ShowFloat_70_Large(14,50,Temperature_s);
-//				LCD_ShowInt_3000_Large(14,97,Humidity_s);
-//				//Humi = CO2_s;
-////			printf("  %d ppm\r\n",CO2);
-//			
-//			Num1=0;
-//		}}
-//		//if(Humi)
-//		//{	//Humi = clamp_int16(Humi, 0, 3000);
+//			Num1 = 1;
+//		}
+//		else
+//		{
+//			Num1 = 0;
+//		}
+//		if (Key_Check(KEY_2, KEY_HOLD))
+//		{
+//			Num2 = 1;
+//		}
+//		else
+//		{
+//			Num2 = 0;
+//		}
+		
+		/*示例2*/
+//		if (Key_Check(KEY_1, KEY_DOWN))
+//		{
+//			Num1 ++;
+//		}
+//		if (Key_Check(KEY_2, KEY_UP))
+//		{
+//			Num2 ++;
+//		}
+		
+		/*示例3*/
+//		if (Key_Check(KEY_1, KEY_SINGLE))
+//		{
+//			Num1 ++;
+//		}
+//		if (Key_Check(KEY_1, KEY_DOUBLE))
+//		{
+//			Num1 += 100;
+//		}
+//		if (Key_Check(KEY_2, KEY_SINGLE))
+//		{
+//			Num1 --;
+//		}
+//		if (Key_Check(KEY_2, KEY_DOUBLE))
+//		{
+//			Num1 -= 100;
+//		}
+//		if (Key_Check(KEY_1, KEY_LONG) || Key_Check(KEY_2, KEY_LONG))
+//		{
+//			Num1 = 0;
+//		}
+		
+//		/*示例4*/
+//		if (Key_Check(KEY_1, KEY_SINGLE) || Key_Check(KEY_1, KEY_REPEAT))
+//		{
+//			//Num1 ++;
+//			//Num1 += 0.1;
+//			CO2 += 1;
+//			Humi += 1;
+//		}
+//		if (Key_Check(KEY_2, KEY_SINGLE) || Key_Check(KEY_2, KEY_REPEAT))
+//		{
+//			//Num1 -= 0.1;
+//			CO2 -= 1;
+//			Humi -= 1;
+//		}
+//		if (Key_Check(KEY_3, KEY_SINGLE))
+//		{
+//			Num1 = 0;
+//		}
+//		if (Key_Check(KEY_3, KEY_LONG))
+//		{
+//			Num1 = 9999;
+//		}
+		
+		/*示例5*/
+//		uint8_t K1_UP = Key_Check(KEY_1, KEY_UP);
+//		uint8_t K2_UP = Key_Check(KEY_2, KEY_UP);
+//		
+//		if (K1_UP && Key_Check(KEY_3, KEY_HOLD))
+//		{
+//			Num1 ++;
+//		}
+//		if (K2_UP && Key_Check(KEY_3, KEY_HOLD))
+//		{
+//			Num1 --;
+//		}
+//		if (K1_UP && Key_Check(KEY_4, KEY_HOLD))
+//		{
+//			Num2 ++;
+//		}
+//		if (K2_UP && Key_Check(KEY_4, KEY_HOLD))
+//		{
+//			Num2 --;
+//		}
+		
+				//LCD_ShowChar_Large(0, 0, Num1 + '0');
+//				LCD_ShowFloat_70(0,0,Num1);
 
-////	LCD_ShowInt_3000_Large(14,97,Humi);//}
-//			//disp_240x160(jiemian);
-//			 Num1 = clamp_float(Num1, 0.0f, 70.0f);
-//					LCD_ShowFloat_70(0, 0, Num1+= 0.1);
-//		Delay_ms(200);
-//		
-//		
-//		
+	 //Num1 = clamp_float(Num1, 0.0f, 70.0f);
+	
+	 //LCD_ShowFloat_70_Large(14, 3, Num1);
+	// 			delay_ms(1000);
+	// LCD_ShowFloat_70_Large(14, 50, Num1);
+	
+	// 			delay_ms(1000);	
+				
+	// 			LCD_ShowFloat_70_Large(14, 97, Num1);
+	
+	// 			delay_ms(1000);
+	
+	 //CO2 = clamp_int8(CO2, 0, 100);
+
+	//LCD_ShowInt_3000_Large(14,50,CO2);
+//					delay_ms(200);
+//Humi = clamp_int16(Humi, 0, 3000);
+
+	//LCD_ShowInt_3000_Large(14,97,Humi);
+					//delay_ms(200);
+
+
+			read_statu = SCD30_readMeasurement(&CO2_s, &Temperature_s, &Humidity_s);
+		if(read_statu)
+		{
+			if(CO2_s && Temperature_s && Humidity_s)
+				
+			{			LCD_ShowInt_3000_Large(14,3,CO2_s);
+				LCD_ShowFloat_70_Large(14,50,Temperature_s);
+				LCD_ShowInt_3000_Large(14,97,Humidity_s);
+				//Humi = CO2_s;
+//			printf("  %d ppm\r\n",CO2);
+			
+			Num1=0;
+		}}
+		//if(Humi)
+		//{	//Humi = clamp_int16(Humi, 0, 3000);
+
+//	LCD_ShowInt_3000_Large(14,97,Humi);//}
+			//disp_240x160(jiemian);
+			 Num1 = clamp_float(Num1, 0.0f, 70.0f);
+					LCD_ShowFloat_70(0, 0, Num1+= 0.1);
+		Delay_ms(200);
+		
+		
+		
 
 			}
 }
