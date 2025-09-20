@@ -469,7 +469,7 @@ void LCD_ShowChar(u16 x, u16 y, u8 num)
  * @param  y: 锟斤拷锟斤拷锟斤拷 0-159
  * @param  num: 要锟斤拷示锟斤拷锟街凤拷ASCII锟斤拷
  */
-void LCD_ShowChar_Large(u16 x, u16 y, u8 num)
+void LCD_ShowChar_Large(u16 x, u16 y, u8 num)//这个函数没有写好,显示不了字母
 {
     u8 temp, i;
     const u8 *font_ptr = NULL; // 锟饺达拷锟斤拷一锟斤拷锟秸碉拷锟街匡拷指锟斤拷

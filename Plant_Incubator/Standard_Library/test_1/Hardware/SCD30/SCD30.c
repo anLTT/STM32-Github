@@ -1,354 +1,432 @@
 #include "stm32f10x.h"                  // Device header
-#include "MyI2C.h"
-#include "stdint.h"
-#include "Delay.h"
-//#include "OLED.h"
 #include "SCD30.h"
-#define SCD30_ADDRESS		0x61
-uint8_t periodic_Measurements_AreRunning=0;
-#define SCD30_ENABLE_DEBUGLOG 0 
+#include "Delay.h"
+#include "stm32f10x_i2c.h"
+#define SCD30_ADDRESS       0x61
 
+/**
+ * 初始化I2C2接口（PB10=SCL, PB11=SDA）
+ */
+void SCD30_I2C2_Init(void)
+{
 
- 
-static const unsigned char crc_table[] =
-{
-0x00,0x31,0x62,0x53,0xc4,0xf5,0xa6,0x97,0xb9,0x88,0xdb,0xea,0x7d,0x4c,0x1f,0x2e,
-0x43,0x72,0x21,0x10,0x87,0xb6,0xe5,0xd4,0xfa,0xcb,0x98,0xa9,0x3e,0x0f,0x5c,0x6d,
-0x86,0xb7,0xe4,0xd5,0x42,0x73,0x20,0x11,0x3f,0x0e,0x5d,0x6c,0xfb,0xca,0x99,0xa8,
-0xc5,0xf4,0xa7,0x96,0x01,0x30,0x63,0x52,0x7c,0x4d,0x1e,0x2f,0xb8,0x89,0xda,0xeb,
-0x3d,0x0c,0x5f,0x6e,0xf9,0xc8,0x9b,0xaa,0x84,0xb5,0xe6,0xd7,0x40,0x71,0x22,0x13,
-0x7e,0x4f,0x1c,0x2d,0xba,0x8b,0xd8,0xe9,0xc7,0xf6,0xa5,0x94,0x03,0x32,0x61,0x50,
-0xbb,0x8a,0xd9,0xe8,0x7f,0x4e,0x1d,0x2c,0x02,0x33,0x60,0x51,0xc6,0xf7,0xa4,0x95,
-0xf8,0xc9,0x9a,0xab,0x3c,0x0d,0x5e,0x6f,0x41,0x70,0x23,0x12,0x85,0xb4,0xe7,0xd6,
-0x7a,0x4b,0x18,0x29,0xbe,0x8f,0xdc,0xed,0xc3,0xf2,0xa1,0x90,0x07,0x36,0x65,0x54,
-0x39,0x08,0x5b,0x6a,0xfd,0xcc,0x9f,0xae,0x80,0xb1,0xe2,0xd3,0x44,0x75,0x26,0x17,
-0xfc,0xcd,0x9e,0xaf,0x38,0x09,0x5a,0x6b,0x45,0x74,0x27,0x16,0x81,0xb0,0xe3,0xd2,
-0xbf,0x8e,0xdd,0xec,0x7b,0x4a,0x19,0x28,0x06,0x37,0x64,0x55,0xc2,0xf3,0xa0,0x91,
-0x47,0x76,0x25,0x14,0x83,0xb2,0xe1,0xd0,0xfe,0xcf,0x9c,0xad,0x3a,0x0b,0x58,0x69,
-0x04,0x35,0x66,0x57,0xc0,0xf1,0xa2,0x93,0xbd,0x8c,0xdf,0xee,0x79,0x48,0x1b,0x2a,
-0xc1,0xf0,0xa3,0x92,0x05,0x34,0x67,0x56,0x78,0x49,0x1a,0x2b,0xbc,0x8d,0xde,0xef,
-0x82,0xb3,0xe0,0xd1,0x46,0x77,0x24,0x15,0x3b,0x0a,0x59,0x68,0xff,0xce,0x9d,0xac
-};
- 
-unsigned char crc8scd30(unsigned char *ptr, unsigned char len)
-{
-		unsigned char crc = 0xFF;
- 
-		while (len--)
-		{
-				crc = crc_table[crc ^ *ptr++];
-		}
-		return (crc);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
+	
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	
+	I2C_InitTypeDef I2C_InitStructure;
+    I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
+	I2C_InitStructure.I2C_ClockSpeed =	50000;
+	I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
+	I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+	I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+	I2C_InitStructure.I2C_OwnAddress1 = 0x00;
+	I2C_Init(I2C2,&I2C_InitStructure);
+	I2C_Cmd(I2C2,ENABLE);
 }
 
-scd30_SensorData_t SCD30_SensorData;
-//CRC验证
-uint8_t calculate_crc(uint8_t *data, uint8_t length) {
-    uint8_t crc = 0xFF;  // 初始化CRC寄存器
-    uint8_t polynomial = 0x31;  // 使用的多项式
- 
-    for (uint8_t i = 0; i < length; i++) {
-        crc ^= data[i];  // 将每个数据字节与当前CRC寄存器进行异或运算
- 
-        for (uint8_t j = 0; j < 8; j++) {  // 对每个结果的每一位进行处理
-            if (crc & 0x80) {  // 检查最高位是否为1
-                crc = (crc << 1) ^ polynomial;  // 左移并与多项式异或
+/**
+ * @brief  CRC-8计算（严格遵循文档1.1.3规则：多项式0x31，初始值0xFF，无反射）
+ * @param  data：待校验数据（2字节，文档1.1.2要求）
+ * @param  len：数据长度（固定为2）
+ * @retval 计算得到的CRC值
+ */
+uint8_t SCD30_CalcCRC8(uint8_t *data, uint8_t len) {
+    uint8_t crc = 0xFF;  // 初始值0xFF（文档1.1.3）
+    for (uint8_t i = 0; i < len; i++) {
+        crc ^= data[i];
+        for (uint8_t j = 0; j < 8; j++) {
+            if (crc & 0x80) {
+                crc = (crc << 1) ^ 0x31;  // 多项式0x31（文档1.1.3）
             } else {
-                crc <<= 1;  // 仅左移
+                crc <<= 1;
             }
         }
     }
- 
-    return crc;
+    return crc;  // 最终异或0x00（文档1.1.3）
 }
- 
-//数字转ASCII
-char SCD30_convertHexToASCII(uint8_t digit)
-{
-  if (digit <= 9)
-    return ( (char)(digit + 0x30) );
-  else
-    return ( (char)(digit + 0x41 - 10) ); // Use upper case for A-F
-}
- 
-//当浓度数据可以被读取时返回1
-uint8_t SCD30_getDataReadyStatus(void)
-{
-  uint16_t response;
-  uint8_t success = SCD30_ReadRegister(Get_data_ready_status, &response, 10);
-	//OLED_ShowHexNum(4,1,response,4);
-  if (success == 0)
-    return (0);
- 
-  // 0 至 11 bit 是 0 --> data not ready
-  //else → data ready for read-out
-  if ((response & 0x07ff) == 0x0000)
-    return (0);
-  return (1);
-}
-//停止连续测量
-uint8_t SCD30_stopPeriodicMeasurement(uint16_t delayTime)
-{
-	uint8_t success = SCD30_Write_without_arguments(0x0104);
-	if(success)
-	{
-		periodic_Measurements_AreRunning = 0;
-		if (delayTime > 0)
-    Delay_ms(delayTime);
-		return 1;
-	}
-	if (delayTime > 0)
-    Delay_s(delayTime);
-	return 0;
-}
- 
-//软复位
-uint8_t SCD30_reInit(uint16_t delayTime)
-{
-	if (periodic_Measurements_AreRunning)
-  {
-    return 0; // 需停止周期测量
-  }
- 
-	uint8_t success = SCD30_Write_without_arguments(Soft_reset);
-	if (delayTime > 0)
-    Delay_ms(delayTime);
-	return 1;
-}
- 
-//激活测量
-uint8_t SCD30_StartPeriodicMeasurement(void)
-{
-	uint8_t success = 0;
-	if (periodic_Measurements_AreRunning)
-  {
-		#if SCD4x_ENABLE_DEBUGLOG
-		OLED_ShowString(4,1,"measurements running");
-		#endif //
-		return 1;
-	}
-	
-	success = SCD30_Write_with_arguments(0x0010,0x03F5);
-	if(success)
-	{
-		periodic_Measurements_AreRunning = 1;
-//		OLED_ShowString(2,1,"Auto success");
-	}
-	return 1;
-}
- 
-uint8_t SCD30_readMeasurement(uint16_t *co2,float *temperature,uint16_t *humidity)
-{
-	uint8_t error = 0;
-	uint8_t buffer[12] = {0};
-	uint8_t CRC1;
-	uint8_t CRC2;
-	uint8_t CRC3;
-	uint8_t CRC4;
-	uint8_t CRC5;
-	uint8_t CRC6;
-	
-	//float co2Concentration;
-	unsigned int tempU32;
-	
-	if(SCD30_getDataReadyStatus() == 0)
-	{//OLED_ShowString(3,1,"Data not ready");
-	return 0;}
-	else;
-		//OLED_ShowString(3,1,"Data     ready");
-	SCD30_SensorData.tempCO2.unsigned16 = 0;
-	SCD30_SensorData.tempHumidity.unsigned16 = 0;
-	SCD30_SensorData.tempTemperature.unsigned16 = 0;
-	
-	IIC_Start();
-  IIC_Send_Byte( (SCD30_ADDRESS<<1)&(~0x01) ); //I2C Address + write
-	Delay_ms(50);
-	IIC_Wait_Ack();
-	IIC_Send_Byte(0x0300 >> 8);   //MSB
-	IIC_Wait_Ack();
-  IIC_Send_Byte(0x0300 & 0xFF); //LSB
-	error = IIC_Wait_Ack();
-	IIC_Stop();
-	
-	if ( error )
-    return 0; //Sensor did not ACK
-	
-	Delay_ms(10);
- 
-	IIC_Start();
-  IIC_Send_Byte( (SCD30_ADDRESS<<1)|(0x01) ); //I2C Address + read
-	Delay_ms(50);
-	IIC_Wait_Ack();
-	buffer[0] = IIC_Read_Byte(1);	//CO2
-	buffer[1] = IIC_Read_Byte(1);
-	CRC1 = IIC_Read_Byte(1);
-	buffer[2] = IIC_Read_Byte(1);
-	buffer[3] = IIC_Read_Byte(1);
-	CRC2 = IIC_Read_Byte(1);			//CO2
-	buffer[4] = IIC_Read_Byte(1); //T
-	buffer[5] = IIC_Read_Byte(1);
-	CRC3 = IIC_Read_Byte(1);
-	buffer[6] = IIC_Read_Byte(1);
-	buffer[7] = IIC_Read_Byte(1);
-	CRC4 = IIC_Read_Byte(1);			//T
-	buffer[8] = IIC_Read_Byte(1);	//RH
-	buffer[9] = IIC_Read_Byte(1);
-	CRC5 = IIC_Read_Byte(1);
-	buffer[10] = IIC_Read_Byte(1);
-	buffer[11] = IIC_Read_Byte(1);
-	CRC6 = IIC_Read_Byte(0);			//RH
-	IIC_Stop();
-	
-	 
-	if(SCD30_getDataReadyStatus() == 1) 
-	{
-		//OLED_ShowString(4,10,"success");
-	}
-	if(SCD30_getDataReadyStatus() == 0) 
-	{
-		//OLED_ShowString(4,10,"error");
-	}
-	 uint8_t dataM[2];
-	 uint8_t dataL[2];
-	 
-	 dataM[0]=buffer[0];
-	 dataM[1]=buffer[1];
-	 dataL[0]=buffer[2];
-	 dataL[1]=buffer[3];
-	 
 
-	 uint8_t tempM[2] = {buffer[4], buffer[5]};
-uint8_t tempL[2] = {buffer[6], buffer[7]};
+/**
+ * 发送I2C命令（内部使用）
+ * @param cmd 命令码
+ * @param param 参数值
+ * @param has_param 是否带参数
+ * @return 0=成功, 1=失败
+ */
+static uint8_t SCD30_I2C2_WriteCmd(uint16_t cmd, uint16_t param, uint8_t has_param) {
+    uint8_t tx_buf[5] = {0};  // 有参数时长度为5字节
+    uint8_t tx_len = 2;       // 无参数时长度为2字节
 
-uint8_t humM[2] = {buffer[8], buffer[9]};
-uint8_t humL[2] = {buffer[10], buffer[11]};
+    // 填充命令（高8位在前）
+    tx_buf[0] = (cmd >> 8) & 0xFF;
+    tx_buf[1] = cmd & 0xFF;
 
-//	 OLED_ShowHexNum(4,1,buffer[0],2);
-//	 OLED_ShowHexNum(4,3,buffer[1],2);
-//	 OLED_ShowHexNum(4,5,CRC1,2);
-//	 OLED_ShowHexNum(4,7,buffer[2],2);
-//	 OLED_ShowHexNum(4,9,buffer[3],2);
-//	 OLED_ShowHexNum(4,11,CRC2,2);
-//	 
-	 //B0  B0  DD  C9(B0  B0  DD  F9)
-	 if((CRC1 == calculate_crc(dataM,2) && CRC2 == calculate_crc(dataL,2))
-		&&(CRC3 == calculate_crc(tempM,2) && CRC4 == calculate_crc(tempL,2))
-		&&(CRC5 == calculate_crc(humM,2) && CRC6 == calculate_crc(humL,2)))	 
-	 {
-		 tempU32  = (unsigned int)((((unsigned int)dataM[0]) << 24) |
-																						(((unsigned int)dataM[1]) << 16) |
-																						(((unsigned int)dataL[0]) << 8) |
-																						((unsigned int)dataL[1]));
-			*co2 = *(float*)&tempU32;
+    // 带参数时填充参数和CRC（只对带参数的两字节进行校验和）
+    if (has_param) {
+        tx_buf[2] = (param >> 8) & 0xFF;
+        tx_buf[3] = param & 0xFF;
+        tx_buf[4] = SCD30_CalcCRC8(&tx_buf[2], 2);
+        tx_len = 5;
+    }
 
-			    tempU32  = (unsigned int)((((unsigned int)tempM[0]) << 24) |
-                              (((unsigned int)tempM[1]) << 16) |
-                              (((unsigned int)tempL[0]) << 8) |
-                              ((unsigned int)tempL[1]));
-    *temperature = *(float*)&tempU32;
+    // 发送START信号
+    I2C_GenerateSTART(I2C2, ENABLE);
+    uint32_t timeout = SCD30_I2C_TIMEOUT;
+    while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_MODE_SELECT)) {
+        if (--timeout == 0) return 1;
+    }
 
-	    tempU32  = (unsigned int)((((unsigned int)humM[0]) << 24) |
-                              (((unsigned int)humM[1]) << 16) |
-                              (((unsigned int)humL[0]) << 8) |
-                              ((unsigned int)humL[1]));
-    *humidity = *(float*)&tempU32;
+    // 发送写地址
+    I2C_Send7bitAddress(I2C2, SCD30_I2C_ADDR_WRITE, I2C_Direction_Transmitter);
+    timeout = SCD30_I2C_TIMEOUT;
+    while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) {
+        if (--timeout == 0) return 1;
+    }
 
-			return 1;
-	 }
-	 else
-	 {
-		 return 0;
-	 }
-		 
+    // 发送数据
+    for (uint8_t i = 0; i < tx_len; i++) {
+        I2C_SendData(I2C2, tx_buf[i]);
+        timeout = SCD30_I2C_TIMEOUT;
+        while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED)) {
+            if (--timeout == 0) return 1;
+        }
+    }
+
+    // 发送STOP信号
+    I2C_GenerateSTOP(I2C2, ENABLE);
+    return 0;
 }
- 
- 
-//写入不带命令
-uint8_t SCD30_Write_without_arguments(uint16_t command)
-{
-	uint8_t error = 0;
-	IIC_Start();
-	IIC_Send_Byte((SCD30_ADDRESS<<1)&(~0x01));
-	Delay_ms(50);
-	IIC_Wait_Ack();
-	IIC_Send_Byte(command >> 8);   //MSB
-	IIC_Wait_Ack();
-	IIC_Send_Byte(command & 0xFF); //LSB
-	error = IIC_Wait_Ack();
-	IIC_Stop();
-	if ( error )
-    return 0; //Sensor did not ACK
- 
-  return 1;
+
+/**
+ * 启动连续测量
+ * @return 0=成功, 1=失败
+ */
+uint8_t SCD30_StartContinuousMeas(void) {
+    // 启动测量，参数0表示禁用气压补偿
+    return SCD30_I2C2_WriteCmd(SCD30_CMD_START_MEAS, 0x0000, 1);
 }
-//写入带命令
-uint8_t SCD30_Write_with_arguments(uint16_t command, uint16_t arguments)
-{
-	uint8_t data[2];
-	uint8_t error = 0;
-  data[0] = arguments >> 8;
-  data[1] = arguments & 0xFF;
- 
-	uint8_t crc = calculate_crc(data,2);
-	IIC_Start();
-	IIC_Send_Byte( (SCD30_ADDRESS<<1)&(~0x01) );
-	Delay_ms(50);
-	IIC_Wait_Ack();
-  IIC_Send_Byte(command >> 8);     //MSB
-	IIC_Wait_Ack();
-  IIC_Send_Byte(command & 0xFF);   //LSB
-	IIC_Wait_Ack();
-  IIC_Send_Byte(arguments >> 8);   //MSB
-	IIC_Wait_Ack();
-  IIC_Send_Byte(arguments & 0xFF); //LSB
-	IIC_Wait_Ack();
-  IIC_Send_Byte(crc); //CRC
-	error = IIC_Wait_Ack();
-	IIC_Stop();
-	
-  if ( error )
-    return (0); //Sensor did not ACK
- 
-  return (1);
+
+/**
+ * 检查数据是否就绪（内部使用）
+ * @return 0=就绪, 1=未就绪, 2=通信失败
+ */
+static uint8_t SCD30_CheckDataReady(void) {
+    uint8_t rx_buf[3] = {0};
+
+    // 发送检查命令
+    if (SCD30_I2C2_WriteCmd(SCD30_CMD_GET_DATA_RDY, 0, 0) != 0) {
+        return 2;
+    }
+
+    Delay_ms(SCD30_DELAY_AFTER_CMD);
+
+    // 发送START信号
+    I2C_GenerateSTART(I2C2, ENABLE);
+    uint32_t timeout = SCD30_I2C_TIMEOUT;
+    while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_MODE_SELECT)) {
+        if (--timeout == 0) return 2;
+    }
+
+    // 发送读地址
+    I2C_Send7bitAddress(I2C2, SCD30_I2C_ADDR_READ, I2C_Direction_Receiver);
+    timeout = SCD30_I2C_TIMEOUT;
+    while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED)) {
+        if (--timeout == 0) return 2;
+    }
+
+    // 读取3字节数据
+    for (uint8_t i = 0; i < 3; i++) {
+        if (i < 2) {
+            I2C_AcknowledgeConfig(I2C2, ENABLE);
+        } else {
+            I2C_AcknowledgeConfig(I2C2, DISABLE);
+            I2C_GenerateSTOP(I2C2, ENABLE);
+        }
+
+        timeout = SCD30_I2C_TIMEOUT;
+        while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_BYTE_RECEIVED)) {
+            if (--timeout == 0) return 2;
+        }
+        rx_buf[i] = I2C_ReceiveData(I2C2);
+    }
+
+    // CRC校验
+    if (rx_buf[2] != SCD30_CalcCRC8(rx_buf, 2)) {
+        return 2;
+    }
+
+    // 返回就绪状态
+    return (rx_buf[1] == 0x01) ? 0 : 1;
 }
-//读取
-uint8_t SCD30_ReadRegister(uint16_t registerAddress, uint16_t *response, uint16_t delayTime)
-{
-	uint8_t error = 0;
-	uint8_t crc = 0;
-	uint8_t data[2] = {0};
-	
-	IIC_Start();
-  IIC_Send_Byte( (SCD30_ADDRESS<<1)&(~0x01) ); //I2C Address + write
-	Delay_ms(30);
-	IIC_Wait_Ack();
-	IIC_Send_Byte(registerAddress >> 8);   //MSB
-	IIC_Wait_Ack();
-  IIC_Send_Byte(registerAddress & 0xFF); //LSB
-	error = IIC_Wait_Ack();
-	IIC_Stop();
-	
-	if ( error )
-    return 0; //Sensor did not ACK
-	
-	Delay_ms(delayTime);
- 
-	IIC_Start();
-  IIC_Send_Byte( (SCD30_ADDRESS<<1)|(0x01) ); //I2C Address + read
-	Delay_ms(30);
-	IIC_Wait_Ack();
-	
-	data[0] = IIC_Read_Byte(1);
-	data[1] = IIC_Read_Byte(1);
-	crc = IIC_Read_Byte(0);
-	IIC_Stop();
-	*response = (uint16_t)data[0] << 8 | data[1];
-	uint8_t expectedCRC = calculate_crc(data,2);
-	
-	if (crc == expectedCRC) // Return true if CRC check is OK	
-      return 1;
-	return 0;
+
+/**
+ * 读取测量数据
+ * @param data 存储数据的结构体指针
+ * @return 0=成功, 1=未就绪, 2=通信失败, 3=CRC错误
+ */
+uint8_t SCD30_ReadMeasData(SCD30_MeasData *data) {
+    uint8_t rx_buf[18] = {0};
+    uint32_t temp_u32 = 0;
+
+    // 检查数据是否就绪
+    uint8_t ready_status = SCD30_CheckDataReady();
+    if (ready_status == 1) return 1;
+    if (ready_status == 2) return 2;
+
+    // 发送读取命令
+    if (SCD30_I2C2_WriteCmd(SCD30_CMD_READ_MEAS, 0, 0) != 0) {
+        return 2;
+    }
+
+    Delay_ms(SCD30_DELAY_AFTER_CMD);
+
+    // 发送START信号
+    I2C_GenerateSTART(I2C2, ENABLE);
+    uint32_t timeout = SCD30_I2C_TIMEOUT;
+    while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_MODE_SELECT)) {
+        if (--timeout == 0) return 2;
+    }
+
+    // 发送读地址
+    I2C_Send7bitAddress(I2C2, SCD30_I2C_ADDR_READ, I2C_Direction_Receiver);
+    timeout = SCD30_I2C_TIMEOUT;
+    while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED)) {
+        if (--timeout == 0) return 2;
+    }
+
+    // 读取18字节数据
+    for (uint8_t i = 0; i < 18; i++) {
+        if (i < 17) {
+            I2C_AcknowledgeConfig(I2C2, ENABLE);
+        } else {
+            I2C_AcknowledgeConfig(I2C2, DISABLE);
+            I2C_GenerateSTOP(I2C2, ENABLE);
+        }
+
+        timeout = SCD30_I2C_TIMEOUT;
+        while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_BYTE_RECEIVED)) {
+            if (--timeout == 0) return 2;
+        }
+        rx_buf[i] = I2C_ReceiveData(I2C2);
+    }
+
+    // CRC校验
+    for (uint8_t i = 0; i < 18; i += 3) {
+        if (rx_buf[i+2] != SCD30_CalcCRC8(&rx_buf[i], 2)) {
+            data->is_valid = 0;
+            return 3;
+        }
+    }
+
+    // 转换CO₂数据
+    temp_u32 = ((uint32_t)rx_buf[0] << 24) | ((uint32_t)rx_buf[1] << 16) |
+               ((uint32_t)rx_buf[3] << 8) | rx_buf[4];
+    data->co2_ppm = *(float*)&temp_u32;
+
+    // 转换温度数据
+    temp_u32 = ((uint32_t)rx_buf[6] << 24) | ((uint32_t)rx_buf[7] << 16) |
+               ((uint32_t)rx_buf[9] << 8) | rx_buf[10];
+    data->temperature_c = *(float*)&temp_u32;
+
+    // 转换湿度数据
+    temp_u32 = ((uint32_t)rx_buf[12] << 24) | ((uint32_t)rx_buf[13] << 16) |
+               ((uint32_t)rx_buf[15] << 8) | rx_buf[16];
+    data->humidity_rh = *(float*)&temp_u32;
+
+    data->is_valid = 1;
+    return 0;
 }
-	
- 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//void SCD30_WaitEvent(I2C_TypeDef* I2Cx, uint32_t I2C_EVENT)
+//{
+//	uint32_t TimeOut;
+//	TimeOut = 10000;
+//	while(I2C_CheckEvent(I2Cx, I2C_EVENT) != SUCCESS)
+//	{
+//		TimeOut --;
+//		if(TimeOut ==0)
+//		{
+//			break;
+//		}
+//	}
+//}
+
+//void SCD30_WriteReg(uint8_t RegAddress, uint8_t Data)     //指定地址写寄存器
+//{
+////	MyI2C_Start();										    //开始通信
+////	MyI2C_SendByte(MPU6050_ADDRESS);					    //读取设备
+////	MyI2C_ReceiveAck();									    //接收应答位
+////	MyI2C_SendByte(RegAdddasaress);							    //读取设备中的寄存器（准备写）
+////	MyI2C_ReceiveAck();										//接收应答位
+////	MyI2C_SendByte(Data);									//向寄存器中写入数据
+////	MyI2C_ReceiveAck();										//接收应答位
+////	MyI2C_Stop();  											//停止通信
+
+//	
+//	
+//	I2C_GenerateSTART(I2C2, ENABLE);
+//	SCD30_WaitEvent(I2C2,I2C_EVENT_MASTER_MODE_SELECT);
+//	
+//	I2C_Send7bitAddress(I2C2,SCD30_ADDRESS,I2C_Direction_Transmitter);
+//	SCD30_WaitEvent(I2C2,I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);
+//	
+//	I2C_SendData(I2C2, RegAddress);
+//	SCD30_WaitEvent(I2C2,I2C_EVENT_MASTER_BYTE_TRANSMITTING);
+//	
+//	I2C_SendData(I2C2, Data);
+//	SCD30_WaitEvent(I2C2,I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+//	
+//	I2C_GenerateSTOP(I2C2, ENABLE);
+
+//}
+
+//uint8_t MPU6050_ReadReg(uint8_t RegAddress)    //指定地址读寄存器
+//{
+//	uint8_t Data;
+//	
+////	MyI2C_Start();											//起始条件
+////	MyI2C_SendByte(MPU6050_ADDRESS);						//读取设备
+////	MyI2C_ReceiveAck();										//接收应答位
+////	MyI2C_SendByte(RegAddress);								//读取设备中的寄存器
+////	MyI2C_ReceiveAck();										//接收应答位
+////	
+////	MyI2C_Start();											//重复起始条件
+////	MyI2C_SendByte(MPU6050_ADDRESS | 0x01);					//读取设备（准备读）
+////	MyI2C_ReceiveAck();										//接收应答位
+////	Data = MyI2C_ReceiveByte();								//读取数据
+////	MyI2C_SendAck(1);										//发送非应答位（告诉从机不准备继续读取）
+////	MyI2C_Stop();  											//停止通信
+//	
+//	I2C_GenerateSTART(I2C2, ENABLE);
+//	MPU6050_WaitEvent(I2C2,I2C_EVENT_MASTER_MODE_SELECT);
+//	
+//	I2C_Send7bitAddress(I2C2,MPU6050_ADDRESS,I2C_Direction_Transmitter);
+//	MPU6050_WaitEvent(I2C2,I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);
+//	
+//	I2C_SendData(I2C2, RegAddress);
+//	MPU6050_WaitEvent(I2C2,I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+//	
+//	I2C_GenerateSTART(I2C2, ENABLE);
+//	MPU6050_WaitEvent(I2C2,I2C_EVENT_MASTER_MODE_SELECT);
+//	
+//	I2C_Send7bitAddress(I2C2,MPU6050_ADDRESS,I2C_Direction_Receiver);
+//	MPU6050_WaitEvent(I2C2,I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED);
+//	
+//	I2C_AcknowledgeConfig(I2C2,DISABLE);
+//	I2C_GenerateSTOP(I2C2,ENABLE);
+//	
+//	MPU6050_WaitEvent(I2C2,I2C_EVENT_MASTER_BYTE_RECEIVED);
+//	
+//	Data = I2C_ReceiveData(I2C2);
+//	
+//	I2C_AcknowledgeConfig(I2C2,ENABLE);
+//	
+//	return Data;
+//}
+
+//void MPU6050_Init(void)
+//{
+////	MyI2C_Init();
+//	
+//	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2,ENABLE);
+//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
+//	
+//	GPIO_InitTypeDef GPIO_InitStructure;
+//	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+//	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
+//	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+//	GPIO_Init(GPIOB, &GPIO_InitStructure);
+//	
+//	I2C_InitTypeDef I2C_InitStructure;
+//    I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
+//	I2C_InitStructure.I2C_ClockSpeed =	100000;
+//	I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
+//	I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+//	I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+//	I2C_InitStructure.I2C_OwnAddress1 = 0x00;
+//	I2C_Init(I2C2,&I2C_InitStructure);
+//	
+//	I2C_Cmd(I2C2,ENABLE);
+//	
+//	MPU6050_WriteReg(MPU6050_PWR_MGMT_1,0x01);				//接触睡眠 陀螺仪时钟
+//	MPU6050_WriteReg(MPU6050_PWR_MGMT_2,0x00);      		//6轴不待机
+//	MPU6050_WriteReg(MPU6050_SMPLRT_DIV,0x09);		
+//	MPU6050_WriteReg(MPU6050_CONFIG,0x06);	
+//	MPU6050_WriteReg(MPU6050_GYRO_CONFIG,0x18);
+//	MPU6050_WriteReg(MPU6050_ACCEL_CONFIG,0x18);	
+//}
+
+//uint8_t MPU6050_GetID(void)
+//{
+//	return MPU6050_ReadReg(MPU6050_WHO_AM_I);				//读取设备ID
+//}
+
+//void MPU6050_GetData(int16_t *AccX, int16_t *AccY, int16_t *AccZ,
+//	int16_t *GyroX, int16_t *GyroY, int16_t *GyroZ)
+//{
+//	uint16_t DataH, DataL;
+//	
+//	DataH = MPU6050_ReadReg(MPU6050_ACCEL_XOUT_H);
+//	DataL = MPU6050_ReadReg(MPU6050_ACCEL_XOUT_L);
+//	*AccX = (DataH <<8 | DataL);
+//	
+//	DataH = MPU6050_ReadReg(MPU6050_ACCEL_YOUT_H);
+//	DataL = MPU6050_ReadReg(MPU6050_ACCEL_YOUT_L);
+//	*AccY = (DataH <<8 | DataL);
+//	
+//	DataH = MPU6050_ReadReg(MPU6050_ACCEL_ZOUT_H);
+//	DataL = MPU6050_ReadReg(MPU6050_ACCEL_ZOUT_L);
+//	*AccZ = (DataH <<8 | DataL);
+//	
+//	DataH = MPU6050_ReadReg(MPU6050_GYRO_XOUT_H);
+//	DataL = MPU6050_ReadReg(MPU6050_GYRO_XOUT_L);
+//	*GyroX = (DataH <<8 | DataL);
+//	
+//	DataH = MPU6050_ReadReg(MPU6050_GYRO_YOUT_H);
+//	DataL = MPU6050_ReadReg(MPU6050_GYRO_YOUT_L);
+//	*GyroY = (DataH <<8 | DataL);
+//	
+//	DataH = MPU6050_ReadReg(MPU6050_GYRO_ZOUT_H);
+//	DataL = MPU6050_ReadReg(MPU6050_GYRO_ZOUT_L);
+//	*GyroZ = (DataH <<8 | DataL);
+//}

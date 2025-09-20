@@ -348,21 +348,36 @@ int main(void)
 		
     //SCD30_I2C2_Init();         // 初始化I2C2通信接口
 
-	LCD_ShowString_Large(0, 0, "SCD30");
+	LCD_ShowChar_Large(0, 0, '1');
 
-	Delay_s(3);
+    // 启动SCD30连续测量
+    uint8_t init_status = SCD30_StartContinuousMeas();
+    if (init_status != 0) {
+        LCD_Clear();
+        LCD_ShowChar_Large(1, 1, 'F');
+        LCD_ShowChar_Large(2, 1, 'C');
+        while (1);  // 初始化失败则停留在此
+    }
+
+	LCD_Clear();
+	    LCD_ShowChar_Large(1, 1, '1');
+    Delay_ms(1000);
+    LCD_Clear();
+
+	SCD30_MeasData data;       // 存储传感器数据
+    char display_buf[32];      // 显示缓冲区
 
 	disp_240x160(jiemian);
-	delay_ms(1000);
+	// delay_ms(1000);
 
-		for(Num1=0;Num1<1;Num1++)//预热计时3秒
-	{
-			LCD_ShowFloat_70(0, 0, Num1);
-		Delay_s(1);
-	}
+	// 	for(Num1=0;Num1<1;Num1++)//预热计时3秒
+	// {
+	// 		LCD_ShowFloat_70(0, 0, Num1);
+	// 	Delay_s(1);
+	// }
 	
-			SCD30_stopPeriodicMeasurement(1);
-  	SCD30_StartPeriodicMeasurement();
+	// 		SCD30_stopPeriodicMeasurement(1);
+  	// SCD30_StartPeriodicMeasurement();
 //	
 //	LCD_Clear();
 //		LCD_DrawPoint(0,0);
@@ -395,6 +410,49 @@ int main(void)
 	
 	while (1)
 	{
+
+		// 读取传感器数据
+        uint8_t read_status = SCD30_ReadMeasData(&data);
+        
+        // 根据读取状态显示不同内容
+        if (read_status == 0 && data.is_valid) {
+            // //判断数据指标
+            // if(data.co2_ppm > 2000||data.temperature_c > 35)  
+			// {
+			// 	LED1_ON();
+			// 	LED2_OFF();
+			// }
+			// else 
+			// {	
+			// 	LED1_OFF();
+			// 	LED2_ON();
+			// }
+			// 数据有效，显示测量值
+            // 显示CO₂浓度
+			LCD_ShowInt_3000_Large(14,3, data.co2_ppm);
+			LCD_ShowChar_Large(0, 4, 'p');
+			// sprintf(display_buf, "CO2: %.1f ppm", data.co2_ppm);
+            // OLED_ShowString(1, 1, display_buf);
+            
+            // 显示温度
+			LCD_ShowFloat_70_Large(14,50, data.temperature_c);
+			LCD_ShowChar_Large(0, 10, '.');
+            // sprintf(display_buf, "Temp: %.1f C", data.temperature_c);
+            // OLED_ShowString(2, 1, display_buf);
+            
+            // 显示湿度
+			LCD_ShowInt_3000_Large(14,97, data.humidity_rh);
+			LCD_ShowChar_Large(0, 16, '.');	
+            // sprintf(display_buf, "Humi: %.1f %%", data.humidity_rh);
+            // OLED_ShowString(3, 1, display_buf);
+        } else {
+            // 数据无效，显示错误信息
+            LCD_Clear();
+			LCD_ShowChar_Large(1, 1, 'E');
+			// sprintf(display_buf, "Code: %d", read_status);
+            // OLED_ShowString(2, 1, display_buf);
+		}
+
 
 		switch (flag)
         {
@@ -559,17 +617,12 @@ int main(void)
 //				LCD_ShowFloat_70(0,0,Num1);
 
 	 //Num1 = clamp_float(Num1, 0.0f, 70.0f);
-	
 	 //LCD_ShowFloat_70_Large(14, 3, Num1);
 	// 			delay_ms(1000);
 	// LCD_ShowFloat_70_Large(14, 50, Num1);
-	
+	// 			delay_ms(1000);					
+	// 			LCD_ShowFloat_70_Large(14, 97, Num1);	
 	// 			delay_ms(1000);	
-				
-	// 			LCD_ShowFloat_70_Large(14, 97, Num1);
-	
-	// 			delay_ms(1000);
-	
 	 //CO2 = clamp_int8(CO2, 0, 100);
 
 	//LCD_ShowInt_3000_Large(14,50,CO2);
@@ -580,28 +633,31 @@ int main(void)
 					//delay_ms(200);
 
 
-			read_statu = SCD30_readMeasurement(&CO2_s, &Temperature_s, &Humidity_s);
-		if(read_statu)
-		{
-			if(CO2_s && Temperature_s && Humidity_s)
+	
+// 		if(read_statu)
+// 		{
+// 			if(CO2_s && Temperature_s && Humidity_s)
 				
-			{			LCD_ShowInt_3000_Large(14,3,CO2_s);
-				LCD_ShowFloat_70_Large(14,50,Temperature_s);
-				LCD_ShowInt_3000_Large(14,97,Humidity_s);
-				//Humi = CO2_s;
-//			printf("  %d ppm\r\n",CO2);
+// 			{			LCD_ShowInt_3000_Large(14,3,CO2_s);
+// 				LCD_ShowFloat_70_Large(14,50,Temperature_s);
+// 				LCD_ShowInt_3000_Large(14,97,Humidity_s);
+// 				//Humi = CO2_s;
+// //			printf("  %d ppm\r\n",CO2);
 			
-			Num1=0;
-		}}
-		//if(Humi)
-		//{	//Humi = clamp_int16(Humi, 0, 3000);
+// 			Num1=0;
+// 		}}
+// 		//if(Humi)
+// 		//{	//Humi = clamp_int16(Humi, 0, 3000);
 
-//	LCD_ShowInt_3000_Large(14,97,Humi);//}
-			//disp_240x160(jiemian);
-			 Num1 = clamp_float(Num1, 0.0f, 70.0f);
-					LCD_ShowFloat_70(0, 0, Num1+= 0.1);
-		Delay_ms(200);
+// //	LCD_ShowInt_3000_Large(14,97,Humi);//}
+// 			//disp_240x160(jiemian);
+// 			 Num1 = clamp_float(Num1, 0.0f, 70.0f);
+// 					LCD_ShowFloat_70(0, 0, Num1+= 0.1);
 		
+		
+					// Delay_ms(200);
+		        // 等待下一次测量（SCD30默认测量间隔为2秒）
+        Delay_ms(2200);
 		
 		
 

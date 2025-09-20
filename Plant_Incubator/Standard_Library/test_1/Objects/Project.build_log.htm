@@ -27,16 +27,25 @@ Project File Date:  09/01/2025
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Software\Keil\ARM\ARMCC\Bin'
 Build target 'Target 1'
+compiling SCD30.c...
 compiling main.c...
 .\Hardware\LCD\lcd.h(93): warning:  #1-D: last line of file ends without a newline
-  #endif
-.\Hardware\SCD30\SCD30.h(56): warning:  #1-D: last line of file ends without a newline
   #endif
 .\Hardware\I2C\MyI2C.h(28): warning:  #1-D: last line of file ends without a newline
   #endif
 User\main.c(340): warning:  #177-D: variable "i"  was declared but never referenced
   		uint8_t i=0;
-User\main.c: 4 warnings, 0 errors
+User\main.c(341): warning:  #177-D: variable "read_statu"  was declared but never referenced
+  		uint8_t read_statu;
+User\main.c(342): warning:  #177-D: variable "CO2_s"  was declared but never referenced
+  		uint16_t CO2_s = 0; //ppm
+User\main.c(343): warning:  #177-D: variable "Temperature_s"  was declared but never referenced
+  		float Temperature_s = 0; //ppm
+User\main.c(344): warning:  #177-D: variable "Humidity_s"  was declared but never referenced
+  		uint16_t Humidity_s = 0; //ppm
+User\main.c(368): warning:  #177-D: variable "display_buf"  was declared but never referenced
+      char display_buf[32];      // ???????????????
+User\main.c: 8 warnings, 0 errors
 compiling lcd.c...
 Hardware\LCD\lcd.h(93): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -70,9 +79,9 @@ Hardware\LCD\lcd.c(836): warning:  #1-D: last line of file ends without a newlin
   }
 Hardware\LCD\lcd.c: 15 warnings, 0 errors
 linking...
-Program Size: Code=14162 RO-data=3678 RW-data=4852 ZI-data=1636  
+Program Size: Code=11078 RO-data=3678 RW-data=4844 ZI-data=1636  
 FromELF: creating hex file...
-".\Objects\Project.axf" - 0 Error(s), 19 Warning(s).
+".\Objects\Project.axf" - 0 Error(s), 23 Warning(s).
 
 <h2>Software Packages used:</h2>
 

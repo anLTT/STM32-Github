@@ -28,6 +28,5 @@
 .\objects\scd30.o: .\Library\stm32f10x_usart.h
 .\objects\scd30.o: .\Library\stm32f10x_wwdg.h
 .\objects\scd30.o: .\Library\misc.h
-.\objects\scd30.o: .\Hardware\I2C\MyI2C.h
-.\objects\scd30.o: .\System\Delay.h
 .\objects\scd30.o: Hardware\SCD30\SCD30.h
+.\objects\scd30.o: .\System\Delay.h
